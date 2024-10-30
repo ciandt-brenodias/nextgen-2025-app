@@ -4,6 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@app/core/services/auth.service';
 import { ISignup } from '../interfaces/signup.interface';
+import { UserState } from '@app/components/header/header.component';
 
 @Component({
   selector: 'app-signup',
@@ -16,6 +17,7 @@ export class SignupComponent implements OnDestroy {
   signupForm!: FormGroup;
   errMsg: string = '';
   loading: boolean = false;
+  stateType: UserState = 'nao-logado';
 
   constructor(private authService: AuthService) {
     this.createForm();

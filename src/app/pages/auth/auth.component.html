@@ -1,3 +1,5 @@
+<div class="min-h-screen flex flex-col gap-32">
+<app-header></app-header>
 <div *ngIf="showSignup; else signInForm">
   <app-signup></app-signup>
 </div>
@@ -5,3 +7,4 @@
 <ng-template #signInForm>
   <app-signin></app-signin>
 </ng-template>
+</div>
