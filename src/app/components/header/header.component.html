@@ -1,0 +1,77 @@
+<div class="w-full bg-gray-400 rounded-b-xl">
+  <div class="container mx-auto flex flex-row justify-between items-center py-8 px-4">
+    <p class="lg:text-4xl text-xl font-bold text-gray-600">MentorMunch</p>
+
+    <div class="lg:hidden">
+      <button (click)="toggleMenu()" class="text-gray-600 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div hidden="true" [ngClass]="{'hidden': isMenuOpen, 'lg:flex': true }" class="flex-row space-x-4">
+      <div *ngIf="notLogged" class="flex flex-row space-x-4">
+        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
+          entrar
+        </button>
+        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
+          cadastre-se
+        </button>
+      </div>
+
+      <div *ngIf="isAluno || isProfessor" class="flex space-x-4">
+        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
+          home
+        </button>
+        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
+          mentorias
+        </button>
+        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
+          perfil
+        </button>
+      </div>
+
+      <div *ngIf="isEmpresa" class="flex space-x-4">
+        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
+          home
+        </button>
+        <button type="button" (click)="teste()" class="custom-header-button w-16 lg:w-48">
+          banco de talentos
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isMenuOpen" class="lg:hidden flex flex-col space-y-4 px-4 py-4">
+    <div *ngIf="notLogged" class="flex flex-col gap-4">
+      <button type="button" (click)="teste()" class="custom-header-button w-full">
+        entrar
+      </button>
+      <button type="button" (click)="teste()" class="custom-header-button w-full">
+        cadastre-se
+      </button>
+    </div>
+
+    <div *ngIf="isAluno || isProfessor" class="flex flex-col gap-4">
+      <button type="button" (click)="teste()" class="custom-header-button w-full">
+        home
+      </button>
+      <button type="button" (click)="teste()" class="custom-header-button w-full">
+        mentorias
+      </button>
+      <button type="button" (click)="teste()" class="custom-header-button w-full">
+        perfil
+      </button>
+    </div>
+
+    <div *ngIf="isEmpresa" class="flex flex-col gap-4">
+      <button type="button" (click)="teste()" class="custom-header-button w-full">
+        home
+      </button>
+      <button type="button" (click)="teste()" class="custom-header-button w-full">
+        banco de talentos
+      </button>
+    </div>
+  </div>
+</div>
