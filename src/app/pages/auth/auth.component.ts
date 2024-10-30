@@ -5,10 +5,15 @@ import { Component } from '@angular/core';
   templateUrl: './auth.component.html',
 })
 export class AuthComponent {
-  showSignup = false;
-  constructor() {}
+  showLogin = true;
 
   toggleForm() {
-    console.log('Toggle form');
+    this.showLogin = !this.showLogin;
+  }
+
+  get dynamicText(): string {
+    return this.showLogin
+      ? 'Faça seu login ao lado para acessar cada perfil!'
+      : 'Cadastre-se agora para aproveitar o melhor da plataforma!';
   }
 }

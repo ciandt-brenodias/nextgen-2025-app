@@ -1,59 +1,19 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-md w-full">
-    <div>
-      <h2 class="text-center text-3xl font-extrabold text-gray-900">
-        create your account
-      </h2>
-    </div>
-    <form class="mt-8 space-y-6" [formGroup]="signupForm">
-      <div class="rounded-md shadow-sm -space-y-px">
-        <div>
-          <label for="fullname" class="sr-only">fullname</label>
-          <input id="fullname" type="fullname" autocomplete="fullname" required formControlName="fullname"
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            placeholder="fullname">
-        </div>
-        <div>
-          <label for="email-address" class="sr-only">email</label>
-          <input id="email-address" type="email" autocomplete="email" required formControlName="email"
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            placeholder="email address">
-        </div>
-        <div>
-          <label for="password" class="sr-only">password</label>
-          <input id="password" type="password" autocomplete="current-password" required formControlName="password"
-            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            placeholder="password">
-        </div>
-      </div>
+<div class="flex flex-col items-center bg-white p-6 rounded-lg shadow-md w-96">
+  <h3 class="text-xl font-bold mb-4 text-[#FA5A50]">Cadastre-se</h3>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full">
+    <label for="document" class="mt-2">Document:</label>
+    <input id="document" formControlName="document" class="p-2 border border-gray-300 rounded" required />
 
-      <!-- Password rules -->
-      <div class="mt-2 p-4 bg-white shadow rounded">
-        <h3 class="text-sm font-semibold text-gray-700">password requirements:</h3>
-        <ul class="list-disc ml-5 text-sm text-gray-600">
-          <li>must contain at least 1 <strong>upper case</strong> letter</li>
-          <li>must contain at least 1 <strong>lower case</strong> letter</li>
-          <li>must contain at least 1 <strong>number or special character</strong></li>
-        </ul>
-      </div>
+    <label for="email" class="mt-2">Email:</label>
+    <input id="email" type="email" formControlName="email" class="p-2 border border-gray-300 rounded" required />
 
-      <small class="text-center text-red-500">{{errMsg}}</small>
+    <label for="password" class="mt-2">Senha:</label>
+    <input id="password" type="password" formControlName="password" class="p-2 border border-gray-300 rounded"
+      required />
 
-      <div>
-        <button type="button" (click)="onSignup()" [disabled]="loading || signupForm.invalid"
-          [ngClass]="{'bg-gray-300 hover:bg-gray-300': loading || signupForm.invalid}"
-          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-          <span *ngIf="loading"
-            class="inline-block h-5 w-5 mr-3 animate-spin text-primary-500 rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></span>
-          sign up
-        </button>
-      </div>
-    </form>
-    <div class="flex items-center justify-center">
-      <button type="button" (click)="toggleForm()"
-        class="mt-5 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-        already have an account? sign in
-      </button>
-    </div>
-  </div>
+    <button type="submit"
+      class="mt-4 bg-[#A63832] text-white p-2 rounded hover:bg-[#D94A41] transition">Cadastra-se</button>
+    <button type="button" (click)="toggleForm.emit()" class="mt-2 text-blue-500">Ja possui uma conta? Faca seu
+      login!</button>
+  </form>
 </div>

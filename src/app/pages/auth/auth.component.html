@@ -1,7 +1,29 @@
-<div *ngIf="showSignup; else signInForm">
-  <app-signup></app-signup>
-</div>
+<section class="max-h-full">
+  <div class="flex bg-white border border-b-4 border-b-[#FA5A50] text-[#FA5A50] text-left items-center p-4 h-32">
+    <h1 class="text-3xl font-medium">Conecte-se com as mentorias que importam!</h1>
+  </div>
 
-<ng-template #signInForm>
-  <app-signin></app-signin>
-</ng-template>
+  <div class="flex flex-col lg:flex-row h-1/2">
+    <div class="flex-1 p-6 flex flex-col items-start">
+      <h2 class="text-2xl font-normal">Nunca foi tão fácil se conectar com mentorias!</h2>
+      <p class="mt-2">{{ dynamicText }}</p>
+    </div>
+
+    <div class="flex-1 p-6 flex items-center justify-center">
+      <div class="transition-opacity duration-300 ease-in-out" [ngClass]="showLogin ? 'opacity-100' : 'opacity-0'"
+        *ngIf="showLogin">
+        <app-signin (toggleForm)="toggleForm()"></app-signin>
+      </div>
+      <div class="transition-opacity duration-300 ease-in-out" [ngClass]="!showLogin ? 'opacity-100' : 'opacity-0'"
+        *ngIf="!showLogin">
+        <app-signup (toggleForm)="toggleForm()"></app-signup>
+      </div>
+    </div>
+  </div>
+
+  <footer
+    class="fixed bottom-0 left-0 right-0 bg-white text-[#000050] p-4 flex justify-between items-center border border-t-2 border-t-[#FA5A50]">
+    <a href="#" class="text-[#000050] hover:underline">Fale conosco</a>
+    <span>2024 MentorMunch Inc.</span>
+  </footer>
+</section>
