@@ -10,6 +10,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { MatIconButton } from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 const COMPONENTS = [HeaderComponent, FooterCompoonent, TableComponent, SpinnerComponent];
 
@@ -21,6 +23,8 @@ const COMPONENTS = [HeaderComponent, FooterCompoonent, TableComponent, SpinnerCo
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
+  
+    MatIconModule,
     MatSortModule,
     MatTableModule,
   ],

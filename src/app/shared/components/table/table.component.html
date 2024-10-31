@@ -1,8 +1,8 @@
 <div class="flex flex-col w-full h-full">
   <div *ngIf="enableFilter" class="mb-4">
-    <mat-form-field class="w-3/5">
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+    <p class="text-lg font-medium mb-2" >Filtro</p>
+    <mat-form-field class=" w-full lg:w-3/5">
+      <input matInput (keyup)="applyFilter($event)" placeholder="nome, skill, etc.." #input>
     </mat-form-field>
   </div>
 
@@ -15,9 +15,9 @@
 
       <ng-container *ngIf="enableActions" matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="p-4 w-1/6"> actions </th>
-        <td mat-cell *matCellDef="let row" class="p-4 w-1/6 gap-4">
-          <button class="mr-2 my-1 bg-coral-100 p-2 rounded hover:bg-coral-200 transition" (click)="onFirstAction(row)">Action 1</button>
-          <button class="mr-2 my-1 bg-coral-100 p-2 rounded hover:bg-coral-200 transition" (click)="onSecondAction(row)">Action 2</button>
+        <td class=" p-4 w-1/12 gap-4" mat-cell *matCellDef="let row">
+            <button class="custom-icon-button" (click)="onFirstAction(row)"><mat-icon>visibility</mat-icon></button>
+            <button class="custom-icon-button" (click)="onSecondAction(row)"><mat-icon>add</mat-icon></button>
         </td>
       </ng-container>
 
@@ -32,6 +32,6 @@
       </tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" aria-label="Seleciona a página dos usuários"></mat-paginator>
   </div>
 </div>

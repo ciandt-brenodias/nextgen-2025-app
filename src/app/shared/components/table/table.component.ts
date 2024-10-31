@@ -27,7 +27,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   ngOnInit() {}
 
   ngAfterViewInit() {
-    this.paginator.showFirstLastButtons=true;
+    this.paginator.showFirstLastButtons = true;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
