@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SessionService } from './session.service';
 import { ISignin } from '@app/pages/auth/interfaces/signin.interface';
-import { HttpClient } from '@angular/common/http';
-import { Routes } from '@app/shared/helpers/routes.helper';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ISignup } from '@app/pages/auth/interfaces/signup.interface';
 import { IJwtPayload } from '@app/pages/auth/interfaces/jwt-payload.interface';
@@ -11,12 +10,24 @@ import { IJwtPayload } from '@app/pages/auth/interfaces/jwt-payload.interface';
   providedIn: 'root',
 })
 export class AuthService extends SessionService {
+  private readonly LOGIN_URL = 'http://localhost:3000/login';
+
   constructor(private http: HttpClient) {
     super();
   }
 
   public signin(signin: ISignin): Observable<any> {
-    return this.http.post<any>(Routes.SIGNIN, signin);
+    const loginPayload = {
+      usuario: signin.username,
+      senha: signin.password
+    };
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+    });
+    
+    return this.http.post<any>(this.LOGIN_URL, loginPayload, { headers });
   }
 
   public logout(): void {
@@ -24,7 +35,8 @@ export class AuthService extends SessionService {
   }
 
   public signup(signup: ISignup): Observable<any> {
-    return this.http.post<any>(Routes.SIGNUP, signup);
+    // Assuming the signup endpoint is not provided, maintain the original URL
+    return this.http.post<any>(this.LOGIN_URL, signup);
   }
 
   public storeSessionData(res: string): void {

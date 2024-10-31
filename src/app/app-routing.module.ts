@@ -8,6 +8,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'mentorias',
+    loadChildren: () =>
+      import('./pages/mentorias/mentorias.module').then(
+        (m) => m.MentoriasModule
+      ),
+  }
 ];
 
 @NgModule({
