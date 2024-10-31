@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserState } from '@app/components/header/header.component';
+import { UserState } from '@app/shared/components/header/header.component';
 import { AuthService } from '@app/core/services/auth.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ISignup } from '../interfaces/signup.interface';

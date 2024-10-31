@@ -1,16 +1,17 @@
 <section class="max-h-full">
-  <app-header></app-header>
-  <div class="flex bg-white border border-b-4 border-b-[#FA5A50] text-[#FA5A50] text-left items-center p-4 h-32">
-    <h1 class="text-3xl font-medium">Conecte-se com as mentorias que importam!</h1>
+  <div
+    class="flex bg-white border border-b-4 border-b-[#FA5A50] text-[#FA5A50] text-left items-center lg:px-16 px-10 py-4 lg:h-32">
+    <h1 class="text-md lg:text-3xl font-medium">Conecte-se com as mentorias que importam!</h1>
   </div>
 
-  <div class="flex flex-col lg:flex-row h-1/2">
-    <div class="flex-1 p-6 flex flex-col items-start">
-      <h2 class="text-2xl font-normal">Nunca foi tão fácil se conectar com mentorias!</h2>
-      <p class="mt-2">{{ dynamicText }}</p>
+  <div class="flex flex-col lg:flex-row h-1/2 lg:px-16 px-10 py-6 lg:mt-16">
+    <div class="flex-1 lg:flex flex-col items-start hidden">
+      <h2 class="text-md lg:text-2xl font-medium">Nunca foi tão fácil se conectar com mentorias!
+      </h2>
+      <p class="text-xs lg:text-lg mt-2">{{ dynamicText }}</p>
     </div>
 
-    <div class="flex-1 p-6 flex items-center justify-center">
+    <div class="flex-1 flex items-center lg:justify-end justify-center">
       <div class="transition-opacity duration-300 ease-in-out" [ngClass]="showLogin ? 'opacity-100' : 'opacity-0'"
         *ngIf="showLogin">
         <app-signin (toggleForm)="toggleForm()"></app-signin>
@@ -21,10 +22,4 @@
       </div>
     </div>
   </div>
-
-  <footer
-    class="fixed bottom-0 left-0 right-0 bg-white text-[#000050] p-4 flex justify-between items-center border border-t-2 border-t-[#FA5A50]">
-    <a href="#" class="text-[#000050] hover:underline">Fale conosco</a>
-    <span>2024 MentorMunch Inc.</span>
-  </footer>
 </section>

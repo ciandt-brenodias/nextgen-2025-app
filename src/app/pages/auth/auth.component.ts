@@ -13,7 +13,7 @@ export class AuthComponent {
 
   get dynamicText(): string {
     return this.showLogin
-      ? 'Faça seu login ao lado para acessar cada perfil!'
+      ? 'Faça seu login para acessar cada perfil!'
       : 'Cadastre-se agora para aproveitar o melhor da plataforma!';
   }
 }

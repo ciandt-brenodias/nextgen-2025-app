@@ -1,15 +1,16 @@
 <div class="flex flex-col items-center bg-white p-6 rounded-lg shadow-md w-96">
-  <h3 class="text-xl font-bold mb-4 text-[#FA5A50]">Login</h3>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full">
-    <label for="email" class="mt-2">Email:</label>
-    <input id="email" type="email" formControlName="email" class="p-2 border border-gray-300 rounded" required />
+  <h3 class="text-xl font-medium mb-4 text-[#FA5A50]">Entrar</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full gap-y-4">
+    <label for="email" class="mt-2 sr-only">email:</label>
+    <input id="email" type="email" formControlName="email" class="p-2 border border-gray-300 rounded"
+      placeholder="email" required />
 
-    <label for="password" class="mt-2">Senha:</label>
+    <label for="password" class="mt-2 sr-only">senha:</label>
     <input id="password" type="password" formControlName="password" class="p-2 border border-gray-300 rounded"
-      required />
+      placeholder="senha" required />
 
-    <button type="submit" class="mt-4 bg-[#A63832] text-white p-2 rounded hover:bg-[#D94A41] transition">Login</button>
-    <button type="button" (click)="toggleForm.emit()" class="mt-2 text-blue-500">Nao possui uma conta ainda?
+    <button type="submit" class="mt-4 bg-[#A63832] text-white p-2 rounded hover:bg-[#D94A41] transition">entrar</button>
+    <button type="button" (click)="toggleForm.emit()" class="mt-4 text-blue-500">Não possuí uma conta ainda?
       Cadastre-se</button>
   </form>
 </div>

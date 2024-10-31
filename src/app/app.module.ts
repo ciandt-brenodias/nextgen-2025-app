@@ -5,10 +5,11 @@ import { CoreModule } from '@core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideHttpClient } from '@angular/common/http';
+import { ComponentsModule } from './shared/components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, CoreModule],
+  imports: [BrowserModule, AppRoutingModule, CoreModule, ComponentsModule],
   providers: [provideAnimationsAsync(), provideHttpClient()],
   bootstrap: [AppComponent],
 })
