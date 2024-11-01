@@ -16,8 +16,8 @@
       <ng-container *ngIf="enableActions" matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="p-4 w-1/6"> actions </th>
         <td class=" p-4 w-1/12 gap-4" mat-cell *matCellDef="let row">
-            <button class="custom-icon-button" (click)="onFirstAction(row)"><mat-icon>visibility</mat-icon></button>
-            <button class="custom-icon-button" (click)="onSecondAction(row)"><mat-icon>add</mat-icon></button>
+            <button *ngIf="enableAction1" class="custom-icon-button" (click)="onFirstAction(row)"><mat-icon>visibility</mat-icon></button>
+            <button *ngIf="enableAction2" class="custom-icon-button" (click)="onSecondAction(row)"><mat-icon>add</mat-icon></button>
         </td>
       </ng-container>
 

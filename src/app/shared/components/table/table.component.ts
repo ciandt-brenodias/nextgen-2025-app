@@ -14,9 +14,12 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Input() dataSource!: MatTableDataSource<any>;
   @Input() displayedColumns: string[] = [];
   @Input() enableFilter: boolean = true;
-  @Input() enableActions: boolean = true;
+  @Input() enableAction1: boolean = true;
+  @Input() enableAction2: boolean = true;
   @Output() firstAction = new EventEmitter<any>();
   @Output() secondAction = new EventEmitter<any>();
+
+  enableActions: boolean = this.enableAction1 || this.enableAction2;
 
   filterValue: string = '';
 

@@ -2,9 +2,40 @@
   <div *ngIf="dataSource?.data?.length == 0" class="flex justify-center items-center">
     <app-spinner></app-spinner>
   </div>
-
-  <app-table class="w-full px-8 mt-4 lg:px-32 lg:mt-16" *ngIf="dataSource?.data?.length != 0" [dataSource]="dataSource"
-    [displayedColumns]="displayedColumns" [enableFilter]="true" [enableActions]="true"
-    (firstAction)="onFirstAction($event)" (secondAction)="onSecondAction($event)">
+  <app-table class="w-full px-8 mt-4 lg:px-32 lg:mt-16" *ngIf="dataSource?.data?.length != 0" 
+             [dataSource]="dataSource"
+             [displayedColumns]="displayedColumns" 
+             [enableFilter]="true" 
+             [enableAction1]="userLogger == 'aluno'"
+             [enableAction2]="userLogger == 'professor'" 
+             (firstAction)="onFirstAction($event)"
+             (secondAction)="onSecondAction($event)">
   </app-table>
 </section>
+
+<ng-template #alunoCheckFeedback>
+  <p>aluno</p>
+</ng-template>
+
+<ng-template #professorAddFeedback>
+  <form [formGroup]="feedbackForm">
+    <div class="flex flex-row gap-4 items-center">
+      <p class="h-fit mb-4">Sessao:</p>
+      <mat-form-field class="w-2/5">
+        <mat-select formControlName="sessao">
+          <mat-option *ngFor="let sessao of sessoes" 
+                      [value]="sessao.value" 
+                      (click)="setSessao(sessao)">
+            {{sessao.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <p>Feedback:</p>
+      <mat-form-field class="w-full">
+        <textarea matInput formControlName="feedback" class="max-h-64"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</ng-template>

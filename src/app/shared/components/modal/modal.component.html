@@ -1,0 +1,13 @@
+<div class="m-8 flex flex-col justify-between gap-8">
+  <div class="flex flex-row justify-between">
+    <p class="text-lg font-medium mb-2">{{title}}</p>
+    <button (click)="close()"><mat-icon>close</mat-icon></button>
+  </div>
+  <div>
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </div>
+  <div *ngIf="enableActions" class="flex flex-row lg:gap-20 gap-4 justify-center">
+    <button class="flex custom-icon-button" (click)="save()"><mat-icon class="text-lg">save</mat-icon><p class="mt-1">Salvar</p></button>
+    <button class="flex custom-icon-button" (click)="cancel()"><mat-icon class="text-lg">cancel</mat-icon><p class="mt-1">Cancelar</p></button>
+  </div>
+</div>
