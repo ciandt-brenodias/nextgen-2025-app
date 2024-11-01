@@ -1,0 +1,44 @@
+<div>
+  <div class="grid grid-cols-2 gap-4 mb-2">
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-row gap-2">
+        <p class="font-semibold">Skill:</p>
+        <p>{{mentorshipInfo.skill}}</p>
+      </div>
+      <div class="flex flex-row gap-2">
+        <p class="font-semibold">Data de início:</p>
+        <p>{{mentorshipInfo.startDate}}</p>
+      </div>
+      <div class="flex flex-row gap-2">
+        <p class="font-semibold">Data de fim:</p>
+        <p>{{mentorshipInfo.endDate}}</p>
+      </div>
+    </div>
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-row gap-2">
+        <p class="font-semibold">Próxima sessão:</p>
+        <p>{{mentorshipInfo.nextSession}}</p>
+      </div>
+      <div class="flex flex-row gap-2">
+        <p class="font-semibold">Mentor:</p>
+        <p>{{mentorshipInfo.mentor}}</p>
+      </div>
+    </div>
+  </div>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let session of mentorshipInfo.sessions" [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Sessão {{session.id}}
+        </mat-panel-title>
+        <mat-panel-description [ngClass]="getStatusClass(session.status)">
+          {{session.status}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div>
+        <p>Data: {{session.date}}</p>
+        <p>Feedback: {{session.feedback}}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

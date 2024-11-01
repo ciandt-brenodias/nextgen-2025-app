@@ -23,12 +23,12 @@ export class MentoriasComponent implements OnInit {
   @ViewChild('professorAddFeedback') professorContent: TemplateRef<any>;
 
   elementData: UserData[] = [];
-  userLogger: 'professor' | 'aluno' = 'professor';
+  userLogger: 'professor' | 'aluno' = 'aluno';
   dataSource: MatTableDataSource<UserData> = new MatTableDataSource(this.elementData);
   displayedColumns: string[] = ['name', 'skill'];
 
   sessoes: SessaoForm[] = [
-    {value: 'sessao-1', viewValue: 'Sessao 01 - 10/10/2021', sessaoFeedback: 'teste'},
+    {value: 'sessao-1', viewValue: 'Sessao 01 - 10/10/2021', sessaoFeedback: ''},
     {value: 'sessao-2', viewValue: 'Sessao 02 - 12/10/2021', sessaoFeedback: ''},
     {value: 'sessao-3', viewValue: 'Sessao 03 - 14/10/2021', sessaoFeedback: ''},
   ];
@@ -58,10 +58,11 @@ export class MentoriasComponent implements OnInit {
   }
 
   onFirstAction(row: any) {
+    console.log(row);
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '800px',
       viewContainerRef: this.viewContainerRef,
-      data: { content: this.alunoContent, enableActions: false }
+      data: { content: this.alunoContent, enableActions: false, title: 'Monitoria de Python para Dados' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
