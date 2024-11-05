@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MentoriasComponent } from './mentorias.component';
 
 const routes: Routes = [
+  { path: '**', redirectTo: '' },
   { path: '', component: MentoriasComponent },
   { path: 'mentorias', component: MentoriasComponent},
 ];

@@ -14,6 +14,11 @@ const routes: Routes = [
       import('./pages/mentorias/mentorias.module').then(
         (m) => m.MentoriasModule
       ),
+  },
+  {
+    path: 'perfil',
+    loadChildren: () =>
+      import('./pages/perfil/perfil.module').then((m) => m.PerfilModule),
   }
 ];
 

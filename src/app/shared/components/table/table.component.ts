@@ -16,10 +16,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Input() enableFilter: boolean = true;
   @Input() enableAction1: boolean = true;
   @Input() enableAction2: boolean = true;
-  @Output() firstAction = new EventEmitter<any>();
-  @Output() secondAction = new EventEmitter<any>();
-
-  enableActions: boolean = this.enableAction1 || this.enableAction2;
+  @Output() firstAction? = new EventEmitter<any>();
+  @Output() secondAction? = new EventEmitter<any>();
 
   filterValue: string = '';
 

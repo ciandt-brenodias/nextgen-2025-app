@@ -13,7 +13,7 @@
         <td mat-cell *matCellDef="let row" class="p-4 w-1/3"> {{ row[column] }} </td>
       </ng-container>
 
-      <ng-container *ngIf="enableActions" matColumnDef="actions">
+      <ng-container *ngIf="(enableAction1 || enableAction2)" matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="p-4 w-1/6"> actions </th>
         <td class=" p-4 w-1/12 gap-4" mat-cell *matCellDef="let row">
             <button *ngIf="enableAction1" class="custom-icon-button" (click)="onFirstAction(row)"><mat-icon>visibility</mat-icon></button>
@@ -21,13 +21,13 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns.concat(enableActions ? ['actions'] : [])"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns.concat((enableAction1 || enableAction2) ? ['actions'] : [])"></tr>
 
-      <tr mat-row *matRowDef="let row; columns: displayedColumns.concat(enableActions ? ['actions'] : [])"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns.concat((enableAction1 || enableAction2) ? ['actions'] : [])"></tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell p-8" [attr.colspan]="displayedColumns.length + (enableActions ? 1 : 0)">
-          No data matching the filter "{{ input?.nativeElement?.value }}"
+        <td class="mat-cell p-8" [attr.colspan]="displayedColumns.length + ((enableAction1 || enableAction2) ? 1 : 0)">
+          Nenhum dado encontrado "{{ input?.nativeElement?.value }}"
         </td>
       </tr>
     </table>
