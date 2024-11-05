@@ -7,9 +7,8 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@core/services/auth.service';
-import { ISignin } from '../interfaces/signin.interface';
 import { Subject, takeUntil } from 'rxjs';
-import { Pages } from '@app/shared/helpers/routes.helper';
+import { ISignin } from '../interfaces/signin.interface';
 
 @Component({
   selector: 'app-signin',
@@ -40,12 +39,10 @@ export class SigninComponent implements OnInit, OnDestroy {
         .signin(user)
         .pipe(takeUntil(this.ngUnsubscribe$))
         .subscribe({
-          next: (res: { accessToken: string }) => {
-            console.log('[RESPONSE]', res);
-            this.authService.storeSessionData(res.accessToken);
+          next: (res: { access_token: string }) => {
+            this.authService.storeSessionData(res.access_token);
           },
           error: (err) => {
-            console.log('[ERROR]', err);
             console.error(err);
           },
         });

@@ -1,28 +1,19 @@
-import {
-  RequestInfo,
-  ResponseOptions,
-  STATUS,
-} from 'angular-in-memory-web-api';
-import * as EMPRESAS from '@assets/db/files/empresas.json';
+import EMPRESAS from '@assets/db/files/empresas.json';
 
-export function getEmpresaByCnpj(
-  reqInfo: RequestInfo
-): ResponseOptions | undefined {
-  const urlParts = reqInfo.url.split('/');
-  const empresaId = urlParts.find((part) => part.match('\\d') != null);
-  const empresas = EMPRESAS;
-  const empresa = empresas.find((empresa) => empresa.cnpj === empresaId);
+export function getEmpresaByCnpj(cnpj: string): { status: number; body?: any } {
+  const empresas = [...EMPRESAS];
+  const empresa = empresas.find((empresa) => empresa.cnpj === cnpj);
 
   return {
-    status: STATUS.OK,
+    status: 200, // HTTP OK
     body: empresa,
   };
 }
 
-export function getEmpresas(): ResponseOptions | undefined {
-  const empresas = EMPRESAS;
+export function getEmpresas(): { status: number; body?: any } {
+  const empresas = [...EMPRESAS];
   return {
-    status: STATUS.OK,
+    status: 200, // HTTP OK
     body: empresas,
   };
 }

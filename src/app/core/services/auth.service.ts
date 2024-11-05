@@ -16,8 +16,7 @@ export class AuthService extends SessionService {
   }
 
   public signin(signin: ISignin): Observable<any> {
-    console.log('[SIGNIN]', signin);
-    return this.http.get<any>(Routes.SIGNIN);
+    return this.http.post<any>(Routes.SIGNIN, signin);
   }
 
   public logout(): void {

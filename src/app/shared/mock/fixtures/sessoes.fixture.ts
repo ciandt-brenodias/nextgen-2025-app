@@ -1,29 +1,22 @@
-import {
-  RequestInfo,
-  ResponseOptions,
-  STATUS,
-} from 'angular-in-memory-web-api';
-import * as SESSOES from '@assets/db/files/sessoes.json';
+import SESSOES from '@assets/db/files/sessoes.json';
 
-export function getSessaoById(
-  reqInfo: RequestInfo
-): ResponseOptions | undefined {
-  const urlParts = reqInfo.url.split('/');
-  const sessaoId = urlParts.find((part) => part.match('\\d') != null);
-
-  const sessoes = SESSOES;
+export function getSessaoById(sessaoId: string): {
+  status: number;
+  body?: any;
+} {
+  const sessoes = [...SESSOES];
   const sessao = sessoes.find((sessao) => sessao.id === sessaoId);
 
   return {
-    status: STATUS.OK,
+    status: 200, // HTTP OK
     body: sessao,
   };
 }
 
-export function getSessoes(): ResponseOptions | undefined {
-  const sessoes = SESSOES;
+export function getSessoes(): { status: number; body?: any } {
+  const sessoes = [...SESSOES];
   return {
-    status: STATUS.OK,
+    status: 200, // HTTP OK
     body: sessoes,
   };
 }

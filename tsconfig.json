@@ -42,7 +42,7 @@
         "./src/assets/*"
       ],
     },
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

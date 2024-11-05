@@ -1,14 +1,13 @@
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CoreModule } from '@core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideHttpClient } from '@angular/common/http';
-import { ComponentsModule } from './shared/components/components.module';
 import { MentoriasModule } from './pages/mentorias/mentorias.module';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './shared/mock/mockdata.service';
+import { ComponentsModule } from './shared/components/components.module';
+import { mockDataInterceptor } from './shared/mock/mock.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,11 +17,11 @@ import { InMemoryDataService } from './shared/mock/mockdata.service';
     CoreModule,
     ComponentsModule,
     MentoriasModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-      dataEncapsulation: false,
-    }),
   ],
-  providers: [provideAnimationsAsync(), provideHttpClient()],
+  providers: [
+    provideAnimationsAsync(),
+    provideHttpClient(withInterceptors([mockDataInterceptor])),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
