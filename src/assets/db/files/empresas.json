@@ -1,0 +1,284 @@
+[
+    {
+        "nome": "TechNova",
+        "cnpj": "75.549.609/0001-13",
+        "setor": "Big Data",
+        "interesses": [
+            "Ruby",
+            "Ansible",
+            "Terraform",
+            "Vue.js"
+        ],
+        "endereco": "Lagoa Henry Silveira, 33\nVila Sat�lite\n62625136 Cirino do Galho / AM",
+        "email": "contato@technova.com",
+        "linkedin": "https://www.linkedin.com/company/technova/"
+    },
+    {
+        "nome": "InovaTech",
+        "cnpj": "53.863.257/0001-33",
+        "setor": "Inova��o Digital",
+        "interesses": [
+            "HTML",
+            "React",
+            "Ruby",
+            "Java"
+        ],
+        "endereco": "Col�nia de Abreu, 3\nAlto Das Antenas\n17186409 da Concei��o / SP",
+        "email": "contato@inovatech.com",
+        "linkedin": "https://www.linkedin.com/company/inovatech/"
+    },
+    {
+        "nome": "DataSphere",
+        "cnpj": "20.170.816/0001-70",
+        "setor": "Marketing Digital",
+        "interesses": [
+            "Vue.js",
+            "Perl",
+            "TypeScript",
+            "Python",
+            "Node.js"
+        ],
+        "endereco": "Alameda Foga�a\nGranja Werneck\n78513445 da Mata Grande / SP",
+        "email": "contato@datasphere.com",
+        "linkedin": "https://www.linkedin.com/company/datasphere/"
+    },
+    {
+        "nome": "CodeCrafters",
+        "cnpj": "92.072.503/0001-90",
+        "setor": "Automa��o de Processos",
+        "interesses": [
+            "Vue.js",
+            "Ruby",
+            "Kotlin"
+        ],
+        "endereco": "Col�nia de Pacheco, 87\nCandelaria\n01458-062 Arag�o / RR",
+        "email": "contato@codecrafters.com",
+        "linkedin": "https://www.linkedin.com/company/codecrafters/"
+    },
+    {
+        "nome": "PixelPioneers",
+        "cnpj": "33.869.232/0001-30",
+        "setor": "Big Data",
+        "interesses": [
+            "TypeScript",
+            "JavaScript",
+            "Kotlin"
+        ],
+        "endereco": "S�tio Mariane Barros, 95\nVila Uni�o\n89133-534 da Rocha / MG",
+        "email": "contato@pixelpioneers.com",
+        "linkedin": "https://www.linkedin.com/company/pixelpioneers/"
+    },
+    {
+        "nome": "CloudFusion",
+        "cnpj": "82.409.592/0001-64",
+        "setor": "Internet das Coisas",
+        "interesses": [
+            "C#",
+            "Perl",
+            "React"
+        ],
+        "endereco": "Vila de Costa, 945\nJardim Alvorada\n46089-199 Aparecida de Cardoso / ES",
+        "email": "contato@cloudfusion.com",
+        "linkedin": "https://www.linkedin.com/company/cloudfusion/"
+    },
+    {
+        "nome": "DigitalWave",
+        "cnpj": "72.260.444/0001-77",
+        "setor": "Design UI/UX",
+        "interesses": [
+            "Node.js",
+            "JavaScript",
+            "Go",
+            "HTML"
+        ],
+        "endereco": "Vale S�, 58\nBarroca\n07368958 Costa do Amparo / MT",
+        "email": "contato@digitalwave.com",
+        "linkedin": "https://www.linkedin.com/company/digitalwave/"
+    },
+    {
+        "nome": "ByteBuilders",
+        "cnpj": "07.998.332/0001-56",
+        "setor": "Sistemas de Conectividade",
+        "interesses": [
+            "React",
+            "Ruby",
+            "TypeScript",
+            "Node.js"
+        ],
+        "endereco": "Conjunto de da Cunha\nVila Sumar�\n24895-463 Duarte Grande / AP",
+        "email": "contato@bytebuilders.com",
+        "linkedin": "https://www.linkedin.com/company/bytebuilders/"
+    },
+    {
+        "nome": "NexGen Solutions",
+        "cnpj": "95.084.947/0001-34",
+        "setor": "Sistemas de Conectividade",
+        "interesses": [
+            "Python",
+            "Kotlin",
+            "JavaScript"
+        ],
+        "endereco": "Esplanada Luna Vasconcelos, 64\nC�nego Pinheiro 1� Se��o\n03373-900 da Costa Alegre / SP",
+        "email": "contato@nexgen-solutions.com",
+        "linkedin": "https://www.linkedin.com/company/nexgen-solutions/"
+    },
+    {
+        "nome": "CyberNetix",
+        "cnpj": "91.813.103/0001-26",
+        "setor": "Big Data",
+        "interesses": [
+            "PHP",
+            "Perl",
+            "Vue.js",
+            "Ruby",
+            "React"
+        ],
+        "endereco": "Rodovia Dante Teixeira, 8\nVila Paquet�\n79816-227 Lima / MS",
+        "email": "contato@cybernetix.com",
+        "linkedin": "https://www.linkedin.com/company/cybernetix/"
+    },
+    {
+        "nome": "AppVenture",
+        "cnpj": "46.677.509/0001-74",
+        "setor": "Automa��o de Processos",
+        "interesses": [
+            "Python",
+            "JavaScript",
+            "Perl",
+            "HTML"
+        ],
+        "endereco": "Recanto Andrade, 936\nZilah Sposito\n74845-307 S� / PB",
+        "email": "contato@appventure.com",
+        "linkedin": "https://www.linkedin.com/company/appventure/"
+    },
+    {
+        "nome": "QuantumLeap Technologies",
+        "cnpj": "35.898.392/0001-32",
+        "setor": "Marketing Digital",
+        "interesses": [
+            "C#",
+            "React",
+            "Node.js",
+            "TypeScript"
+        ],
+        "endereco": "N�cleo Silva, 82\nVila Nova Para�so\n75366-816 da Cunha da Prata / RJ",
+        "email": "contato@quantumleap-technologies.com",
+        "linkedin": "https://www.linkedin.com/company/quantumleap-technologies/"
+    },
+    {
+        "nome": "Synergy Systems",
+        "cnpj": "25.943.307/0001-57",
+        "setor": "Computa��o em Nuvem",
+        "interesses": [
+            "Terraform",
+            "Perl",
+            "Ansible",
+            "Ruby",
+            "HTML",
+            "Node.js"
+        ],
+        "endereco": "Fazenda Al�cia Rios, 12\nZilah Sposito\n79738489 Moura Paulista / SP",
+        "email": "contato@synergy-systems.com",
+        "linkedin": "https://www.linkedin.com/company/synergy-systems/"
+    },
+    {
+        "nome": "IntelliWare",
+        "cnpj": "59.390.078/0001-02",
+        "setor": "Redes Inteligentes",
+        "interesses": [
+            "Vue.js",
+            "C#",
+            "TypeScript"
+        ],
+        "endereco": "Feira de Moraes, 3\nNova Floresta\n92457-119 Almeida de Novaes / MS",
+        "email": "contato@intelliware.com",
+        "linkedin": "https://www.linkedin.com/company/intelliware/"
+    },
+    {
+        "nome": "SmartGrid Technologies",
+        "cnpj": "44.585.133/0001-42",
+        "setor": "Big Data",
+        "interesses": [
+            "Vue.js",
+            "TypeScript",
+            "React",
+            "HTML",
+            "Node.js"
+        ],
+        "endereco": "Vale da Rocha, 99\nGar�as\n70661-841 Mendes Paulista / AL",
+        "email": "contato@smartgrid-technologies.com",
+        "linkedin": "https://www.linkedin.com/company/smartgrid-technologies/"
+    },
+    {
+        "nome": "FutureLink",
+        "cnpj": "81.517.422/0001-30",
+        "setor": "Desenvolvimento de Software",
+        "interesses": [
+            "Terraform",
+            "Angular",
+            "Perl",
+            "C#"
+        ],
+        "endereco": "Feira de Sousa, 1\nInconfid�ncia\n29401580 Souza / RN",
+        "email": "contato@futurelink.com",
+        "linkedin": "https://www.linkedin.com/company/futurelink/"
+    },
+    {
+        "nome": "TechHaven",
+        "cnpj": "08.438.322/0001-29",
+        "setor": "Big Data",
+        "interesses": [
+            "Perl",
+            "TypeScript",
+            "Kotlin",
+            "CSS",
+            "HTML"
+        ],
+        "endereco": "Fazenda Barros, 5\nCasa Branca\n03873814 C�mara / PA",
+        "email": "contato@techhaven.com",
+        "linkedin": "https://www.linkedin.com/company/techhaven/"
+    },
+    {
+        "nome": "AlgoWorks",
+        "cnpj": "04.328.531/0001-69",
+        "setor": "Intelig�ncia Artificial",
+        "interesses": [
+            "HTML",
+            "React",
+            "JavaScript",
+            "PHP",
+            "Angular",
+            "Ruby"
+        ],
+        "endereco": "S�tio Davi Miguel Nascimento, 30\nS�o Marcos\n18478-353 Vasconcelos / AL",
+        "email": "contato@algoworks.com",
+        "linkedin": "https://www.linkedin.com/company/algoworks/"
+    },
+    {
+        "nome": "NextEra Innovations",
+        "cnpj": "76.668.010/0001-61",
+        "setor": "Big Data",
+        "interesses": [
+            "Go",
+            "Ruby",
+            "C#"
+        ],
+        "endereco": "Quadra Pereira, 53\nConjunto Paulo Vi\n44246-972 Cavalcanti / DF",
+        "email": "contato@nextera-innovations.com",
+        "linkedin": "https://www.linkedin.com/company/nextera-innovations/"
+    },
+    {
+        "nome": "Visionary Tech",
+        "cnpj": "97.753.330/0001-90",
+        "setor": "Inova��o Digital",
+        "interesses": [
+            "Vue.js",
+            "Go",
+            "Python",
+            "Ruby"
+        ],
+        "endereco": "P�tio Samuel Moreira, 2\nConjunto Jardim Filad�lfia\n89959-664 Porto / CE",
+        "email": "contato@visionary-tech.com",
+        "linkedin": "https://www.linkedin.com/company/visionary-tech/"
+    }
+]

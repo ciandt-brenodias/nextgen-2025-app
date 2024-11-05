@@ -11,15 +11,6 @@
     </div>
 
     <div hidden="true" [ngClass]="{'hidden': isMenuOpen, 'lg:flex': true }" class="flex-row space-x-4">
-      <div *ngIf="notLogged" class="flex flex-row space-x-4">
-        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
-          entrar
-        </button>
-        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
-          cadastre-se
-        </button>
-      </div>
-
       <div *ngIf="isAluno || isProfessor" class="flex space-x-4">
         <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
           home
@@ -44,15 +35,6 @@
   </div>
 
   <div *ngIf="isMenuOpen" class="lg:hidden flex flex-col space-y-4 px-4 py-4">
-    <div *ngIf="notLogged" class="flex flex-col gap-4">
-      <button type="button" (click)="teste()" class="custom-header-button w-full">
-        entrar
-      </button>
-      <button type="button" (click)="teste()" class="custom-header-button w-full">
-        cadastre-se
-      </button>
-    </div>
-
     <div *ngIf="isAluno || isProfessor" class="flex flex-col gap-4">
       <button type="button" (click)="teste()" class="custom-header-button w-full">
         home

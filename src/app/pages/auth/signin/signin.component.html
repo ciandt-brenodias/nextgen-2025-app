@@ -1,6 +1,6 @@
 <div class="flex flex-col items-center bg-white p-6 rounded-lg shadow-md w-96">
   <h3 class="text-xl font-medium mb-4 text-[#FA5A50]">Entrar</h3>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full gap-y-4">
+  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="flex flex-col w-full gap-y-4">
     <label for="email" class="mt-2 sr-only">email:</label>
     <input id="email" type="email" formControlName="email" class="p-2 border border-gray-300 rounded"
       placeholder="email" required />

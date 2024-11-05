@@ -41,7 +41,8 @@
       "@assets/*": [
         "./src/assets/*"
       ],
-    }
+    },
+    "resolveJsonModule": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
