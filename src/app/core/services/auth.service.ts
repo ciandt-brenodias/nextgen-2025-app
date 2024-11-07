@@ -6,6 +6,7 @@ import { ISignup } from '@app/pages/auth/interfaces/signup.interface';
 import { Routes } from '@app/shared/helpers/routes.helper';
 import { Observable } from 'rxjs';
 import { SessionService } from './session.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -28,9 +29,8 @@ export class AuthService extends SessionService {
   }
 
   public storeSessionData(res: string): void {
-    // const payload: IJwtPayload = jwtDecode(res);
-    const payload = { fullname: 'John Doe', exp: 0 } as IJwtPayload;
-    this.setUserData(payload.fullname);
+    const payload: IJwtPayload = jwtDecode(res);
+    this.setUserData(payload);
     this.setAccessToken(res);
     this.setExpirationDate(payload.exp.toString());
   }

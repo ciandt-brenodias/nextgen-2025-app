@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { IJwtPayload } from '@app/pages/auth/interfaces/jwt-payload.interface';
 import Keys from '@app/shared/helpers/storage-keys';
 
 @Injectable({
@@ -23,8 +24,8 @@ export class SessionService {
     return sessionStorage.getItem(Keys.EXP_DATE) ?? '';
   }
 
-  public setUserData(username: string): void {
-    sessionStorage.setItem(Keys.USER_DATA, username);
+  public setUserData(userData: IJwtPayload): void {
+    sessionStorage.setItem(Keys.USER_DATA, JSON.stringify(userData));
   }
 
   public getUserData(): string {

@@ -1,7 +1,9 @@
 export interface IJwtPayload {
   email: string;
   exp: number;
-  fullname: string;
+  nome: string;
+  perfil: string;
+  documento: string;
   iat: number;
   id: string;
 }

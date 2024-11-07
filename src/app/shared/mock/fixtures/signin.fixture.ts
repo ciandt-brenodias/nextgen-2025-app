@@ -32,6 +32,7 @@ const signin = (body: any): { status: number; body?: any; error?: any } => {
   } else {
     response.error = { error_description: 'BAD_CREDENTIAL_EXCEPTION' };
     response.status = 400; // HTTP Bad Request
+    throw new Error('Invalid email or password');
   }
 
   return response;

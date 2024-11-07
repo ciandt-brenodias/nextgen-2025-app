@@ -18,6 +18,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   private readonly ngUnsubscribe$ = new Subject<boolean>();
   @Output() toggleForm = new EventEmitter<void>();
   signinForm: FormGroup;
+  loading = false;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -33,6 +34,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
+    this.loading = true;
     if (this.signinForm.valid) {
       const user: ISignin = this.signinForm.value;
       this.authService
@@ -44,6 +46,9 @@ export class SigninComponent implements OnInit, OnDestroy {
           },
           error: (err) => {
             console.error(err);
+          },
+          complete: () => {
+            this.loading = false;
           },
         });
     }

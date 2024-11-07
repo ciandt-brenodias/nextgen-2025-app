@@ -23,7 +23,7 @@ export function mockDataInterceptor(
     const response = handleGetRequest(url);
     if (response) {
       return of(new HttpResponse({ status: 200, body: response })).pipe(
-        delay(1000)
+        delay(3000)
       );
     }
   } else if (req.method === 'POST') {
@@ -34,7 +34,7 @@ export function mockDataInterceptor(
           status: response.status,
           body: response.body,
         })
-      ).pipe(delay(1000));
+      ).pipe(delay(3000));
     }
   }
 
