@@ -13,7 +13,10 @@ export function getAlunoById(alunoId: number): { status: number; body?: any } {
   };
 }
 
-export function getMentoriasFromAlunoById(alunoId: number): { status: number; body?: any } {
+export function getMentoriasFromAlunoById(alunoId: number): {
+  status: number;
+  body?: any;
+} {
   const sessoes = [...SESSOES];
   const mentorias = [...MENTORIAS];
   const professores = [...PROFESSORES];
@@ -23,12 +26,16 @@ export function getMentoriasFromAlunoById(alunoId: number): { status: number; bo
     mentorias.find((mentoria) => mentoria.id === sessao.mentoria_id)
   );
   const result = alunoMentorias.map((mentoria) => {
-    const professor = professores.find((prof) => prof.id === mentoria?.professor_id);
+    const professor = professores.find(
+      (prof) => prof.id === mentoria?.professor_id
+    );
     return {
       mentoria: mentoria?.titulo,
       professor: professor?.nome,
     };
   });
+
+  console.log('[RESULT]', result);
 
   return {
     status: 200,

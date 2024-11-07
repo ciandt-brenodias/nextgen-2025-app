@@ -1,5 +1,3 @@
-import { environment } from '@environment/environment';
-
 const BASE_URL = 'api';
 
 export class Routes {
@@ -24,7 +22,8 @@ export class Routes {
   static SESSOES = `${BASE_URL}/sessao`;
 
   static ALUNO_BY_ID = (id: number | string) => `${BASE_URL}/aluno/${id}`;
-  static MENTORIAS_FROM_ALUNO_BY_ID = (id: number | string) => `${BASE_URL}/aluno/mentorias/${id}`;
+  static MENTORIAS_FROM_ALUNO_BY_ID = (id: number | string) =>
+    `${BASE_URL}/aluno/mentorias/${id}`;
   static PROFESSOR_BY_ID = (id: number | string) =>
     `${BASE_URL}/professor/${id}`;
   static EMPRESA_BY_CNPJ = (id: number | string) => `${BASE_URL}/empresa/${id}`;
