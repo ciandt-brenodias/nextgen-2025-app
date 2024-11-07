@@ -29,6 +29,8 @@ export class Routes {
   static EMPRESA_BY_CNPJ = (id: number | string) => `${BASE_URL}/empresa/${id}`;
   static MENTORIA_BY_ID = (id: number | string) => `${BASE_URL}/mentoria/${id}`;
   static SESSOES_BY_ID = (id: number | string) => `${BASE_URL}/sessao/${id}`;
+  static FEEDBACK_BY_ALUNO_ID = (id: number | string) =>
+    `${BASE_URL}/feedback/${id}`;
 }
 
 export class Pages {

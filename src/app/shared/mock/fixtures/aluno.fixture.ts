@@ -11,7 +11,7 @@ export function getAlunoById(alunoId: number): { status: number; body?: any } {
 }
 
 export function getAlunos(): { status: number; body?: any } {
-  const alunos = ALUNOS;
+  const alunos = [...ALUNOS];
   return {
     status: 200, // HTTP OK
     body: alunos,
