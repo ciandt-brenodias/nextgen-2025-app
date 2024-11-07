@@ -9,6 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@core/services/auth.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ISignin } from '../interfaces/signin.interface';
+import { TokenHelper } from '@app/shared/helpers/token.helper';
+import { Router } from '@angular/router';
+import { UserToken } from '@core/interfaces/userData';
 
 @Component({
   selector: 'app-signin',
@@ -22,7 +25,8 @@ export class SigninComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +47,8 @@ export class SigninComponent implements OnInit, OnDestroy {
         .subscribe({
           next: (res: { access_token: string }) => {
             this.authService.storeSessionData(res.access_token);
+            let token_info : UserToken = TokenHelper.parseJwt(res.access_token);
+            this.router.navigate(['/mentorias', { perfil: token_info.perfil, user_id: token_info.id }]);
           },
           error: (err) => {
             console.error(err);

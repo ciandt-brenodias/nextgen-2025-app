@@ -2,10 +2,13 @@ import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@an
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
+import { TokenHelper } from '@app/shared/helpers/token.helper';
 import { UserData } from '@core/interfaces/userData';
 import { AlunoService } from '@core/services/aluno.service';
 import { AuthService } from '@core/services/auth.service';
+import { SessionService } from '@core/services/session.service';
 
 interface SessaoForm {
   value: string;
@@ -23,7 +26,8 @@ export class MentoriasComponent implements OnInit {
   @ViewChild('professorAddFeedback') professorContent: TemplateRef<any>;
 
   elementData: UserData[] = [];
-  userLogger: 'professor' | 'aluno' = 'aluno';
+  userType: 'professor' | 'aluno' = 'aluno';
+  userId: string;
   dataSource: MatTableDataSource<UserData> = new MatTableDataSource(this.elementData);
   displayedColumns: string[] = ['name', 'skill'];
 
@@ -38,10 +42,12 @@ export class MentoriasComponent implements OnInit {
 
   constructor(
     private alunoService: AlunoService,
-    private authService: AuthService,
-    public dialog: MatDialog,
-    private viewContainerRef: ViewContainerRef
+    private dialog: MatDialog,
+    private viewContainerRef: ViewContainerRef,
+    private activatedRoute: ActivatedRoute,
+    private sessionService: SessionService
   ) { 
+    this.sessionService.getUserData();
     this.feedbackForm = new FormGroup({
       sessao: new FormControl(null, Validators.required),
       feedback: new FormControl('', Validators.required)
@@ -49,8 +55,11 @@ export class MentoriasComponent implements OnInit {
   }
 
   async ngOnInit() {
-    let token = await this.authService.signin({ password: 'admin', username: 'admin' }).toPromise();
-    let response = await this.alunoService.getAlunos(token['nextgen-auth-token']).toPromise();
+    this.userType = this.activatedRoute.snapshot.params['perfil'];
+    this.userId = this.activatedRoute.snapshot.params['user_id'];
+    let token = this.sessionService.getAccessToken();
+    let response = await this.alunoService.getMentoriasFromAlunosById(this.userId, token).toPromise();
+    console.log('teste',response);
     this.elementData = response.map((aluno) => {
       return { name: aluno.nome, skill: aluno.talentos.map((talento) => talento.nome).join(', ') };
     });

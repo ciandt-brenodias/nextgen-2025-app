@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { delay, Observable, of } from 'rxjs';
 import { Routes } from '../helpers/routes.helper';
-import { getAlunoById, getAlunos } from './fixtures/aluno.fixture';
+import { getAlunoById, getAlunos, getMentoriasFromAlunoById } from './fixtures/aluno.fixture';
 import { getEmpresaByCnpj, getEmpresas } from './fixtures/empresa.fixture';
 import { getMentoriaById, getMentorias } from './fixtures/mentoria.fixture';
 import { getProfessorByID, getProfessores } from './fixtures/professor.fixture';
@@ -48,6 +48,11 @@ function handleGetRequest(url: string): any {
     [Routes.PROFESSORES]: getProfessores,
     [Routes.MENTORIAS]: getMentorias,
     [Routes.SESSOES]: getSessoes,
+    [Routes.MENTORIAS_FROM_ALUNO_BY_ID('\\d+')]: (req: any) => {
+      const alunoId = parseInt(req.url.split('/').pop() || '0', 10);
+      console.log('alunoId', alunoId);
+      return getMentoriasFromAlunoById(alunoId);
+    },
     [Routes.ALUNO_BY_ID('\\d+')]: (req: any) => {
       const alunoId = parseInt(req.url.split('/').pop() || '0', 10);
       return getAlunoById(alunoId);
