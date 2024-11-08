@@ -21,10 +21,11 @@ jobs:
         run: npm install
 
       - name: Build the app
-        run: npm run build --base-href "https://ciandt-brenodias.github.io/nextgen-2025-app/"
+        run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+         run: |
+          npx angular-cli-ghpages --dir=dist/nextgen-2025-app
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/nextgen-2025-app
