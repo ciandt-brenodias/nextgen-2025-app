@@ -24,7 +24,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to GitHub Pages
-         run: |
+        run: |
           npx angular-cli-ghpages --dir=dist/nextgen-2025-app
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
