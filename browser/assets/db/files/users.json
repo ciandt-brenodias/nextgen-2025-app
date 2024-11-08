@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nome": "Davi Lucas Cavalcante",
+    "documento": "668.920.438-33",
+    "perfil": "aluno",
+    "email": "davi.lucas.cavalcante@nextgen.com",
+    "password": "123456"
+  },
+  {
+    "id": 1,
+    "nome": "Anthony Peixoto",
+    "documento": "961.187.072-88",
+    "perfil": "professor",
+    "email": "anthony.peixoto@nextgen.com",
+    "password": "12345"
+  },
+  {
+    "id": 2,
+    "nome": "InovaTech",
+    "documento": "53.863.257/0001-33",
+    "perfil": "empresa",
+    "email": "contato@inovatech.com",
+    "password": "123456"
+  }
+]
