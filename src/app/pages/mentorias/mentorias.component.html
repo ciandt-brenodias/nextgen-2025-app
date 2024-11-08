@@ -11,28 +11,3 @@
       (secondAction)="onSecondAction($event)" />
   </div>
 </section>
-
-<ng-template #alunoCheckFeedback>
-  <app-mentoria-details></app-mentoria-details>
-</ng-template>
-
-<ng-template #professorAddFeedback>
-  <form [formGroup]="feedbackForm">
-    <div class="flex flex-row gap-4 items-center">
-      <p class="h-fit mb-4">Sessao:</p>
-      <mat-form-field class="w-full lg:w-2/5">
-        <mat-select formControlName="sessao">
-          <mat-option *ngFor="let sessao of sessoes" [value]="sessao.value" (click)="setSessao(sessao)">
-            {{sessao.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div>
-      <p>Feedback:</p>
-      <mat-form-field class="w-full">
-        <textarea matInput formControlName="feedback" class="max-h-64"></textarea>
-      </mat-form-field>
-    </div>
-  </form>
-</ng-template>

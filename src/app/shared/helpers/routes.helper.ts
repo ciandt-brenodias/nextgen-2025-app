@@ -26,6 +26,8 @@ export class Routes {
     `${BASE_URL}/aluno/mentorias/${id}`;
   static PROFESSOR_BY_ID = (id: number | string) =>
     `${BASE_URL}/professor/${id}`;
+  static MENTORIAS_FROM_PROFESSOR_BY_ID = (id: number | string) =>
+    `${BASE_URL}/professor/mentorias/${id}`;
   static EMPRESA_BY_CNPJ = (id: number | string) => `${BASE_URL}/empresa/${id}`;
   static MENTORIA_BY_ID = (id: number | string) => `${BASE_URL}/mentoria/${id}`;
   static SESSOES_BY_ID = (id: number | string) => `${BASE_URL}/sessao/${id}`;

@@ -11,7 +11,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { ISignin } from '../interfaces/signin.interface';
 import { TokenHelper } from '@app/shared/helpers/token.helper';
 import { Router } from '@angular/router';
-import { UserToken } from '@core/interfaces/userData';
+import { UserToken } from '@core/interfaces/models';
 
 @Component({
   selector: 'app-signin',

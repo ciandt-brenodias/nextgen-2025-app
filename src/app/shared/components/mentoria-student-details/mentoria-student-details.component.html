@@ -1,0 +1,54 @@
+<div class="m-8 flex flex-col justify-between gap-8">
+  <div class="flex flex-row justify-between">
+    <p class="text-lg font-medium mb-2">Mentoria de {{mentoria.mentoria}}</p>
+    <button (click)="close()"><mat-icon>close</mat-icon></button>
+  </div>
+  <div>
+    <div>
+      <div class="grid grid-cols-2 gap-4 mb-2">
+        <div class="flex flex-col gap-1">
+          <div class="flex flex-row gap-2">
+            <p class="font-semibold">Descricao:</p>
+            <p>{{mentoria.descricao}}</p>
+          </div>
+          <div class="flex flex-row gap-2">
+            <p class="font-semibold">Data de início:</p>
+            <p>{{formatDate(mentoria.dataInicio)}}</p>
+          </div>
+          <div class="flex flex-row gap-2">
+            <p class="font-semibold">Data de fim:</p>
+            <p>{{formatDate(mentoria.dataFim)}}</p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <div class="flex flex-row gap-2">
+            <p class="font-semibold">Próxima sessão:</p>
+            <p>{{getExpectedNextSession(mentoria)}}</p>
+          </div>
+          <div class="flex flex-row gap-2">
+            <p class="font-semibold">Mentor:</p>
+            <p>{{mentoria.professor}}</p>
+          </div>
+        </div>
+      </div>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let sessao of mentoria.sessoes" [expanded]="true">
+          <mat-expansion-panel-header >
+            <div class="flex flex-row justify-between w-full p-2 -ml-2 rounded-lg" [ngClass]="getStatusClass(sessao)">
+            <mat-panel-title class="px-2">
+              Sessão {{sessao.sessaoId.split("_")[3] }}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{getStatusFromSession(sessao)}}
+            </mat-panel-description>
+          </div>
+          </mat-expansion-panel-header>
+          <div>
+            <p>Data: {{formatDate(sessao.data)}}</p>
+            <p>Feedback: {{sessao.feedback}}</p>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

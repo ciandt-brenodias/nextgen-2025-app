@@ -9,18 +9,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { MentoriaProfessorDetailsComponent } from '@app/shared/components/mentoria-professor-details/mentoria-professor-details.component';
+import { MentoriaStudentDetailsComponent } from '@app/shared/components/mentoria-student-details/mentoria-student-details.component';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
 import { TokenHelper } from '@app/shared/helpers/token.helper';
-import { UserData } from '@core/interfaces/userData';
+import { FeedbackProfessorModalData, MentoriaData } from '@core/interfaces/models';
 import { AlunoService } from '@core/services/aluno.service';
 import { AuthService } from '@core/services/auth.service';
+import { ProfessorService } from '@core/services/professor.service';
 import { SessionService } from '@core/services/session.service';
 
-interface SessaoForm {
-  value: string;
-  viewValue: string;
-  sessaoFeedback: string;
-}
 
 @Component({
   selector: 'app-mentorias',
@@ -28,132 +26,82 @@ interface SessaoForm {
   styleUrls: ['./mentorias.component.scss'],
 })
 export class MentoriasComponent implements OnInit {
-  @ViewChild('alunoCheckFeedback') alunoContent: TemplateRef<any>;
-  @ViewChild('professorAddFeedback') professorContent: TemplateRef<any>;
-
-  elementData: UserData[] = [];
+  openDialog: any;
+  elementData: MentoriaData[] = [];
   userType: 'professor' | 'aluno' = 'aluno';
   userId: string;
-  dataSource: MatTableDataSource<UserData> = new MatTableDataSource(
+  dataSource: MatTableDataSource<MentoriaData> = new MatTableDataSource(
     this.elementData
   );
-  displayedColumns: string[] = ['name', 'skill'];
-
-  sessoes: SessaoForm[] = [
-    {
-      value: 'sessao-1',
-      viewValue: 'Sessao 01 - 10/10/2021',
-      sessaoFeedback: '',
-    },
-    {
-      value: 'sessao-2',
-      viewValue: 'Sessao 02 - 12/10/2021',
-      sessaoFeedback: '',
-    },
-    {
-      value: 'sessao-3',
-      viewValue: 'Sessao 03 - 14/10/2021',
-      sessaoFeedback: '',
-    },
-  ];
-
-  feedbackForm: FormGroup;
-  originalFeedback: string;
+  displayedColumns: string[];
 
   constructor(
     private alunoService: AlunoService,
+    private professorService: ProfessorService,
     private dialog: MatDialog,
-    private viewContainerRef: ViewContainerRef,
     private activatedRoute: ActivatedRoute,
     private sessionService: SessionService
-  ) {
-    this.sessionService.getUserData();
-    this.feedbackForm = new FormGroup({
-      sessao: new FormControl(null, Validators.required),
-      feedback: new FormControl('', Validators.required),
-    });
-  }
+  ) {}
 
   async ngOnInit() {
     this.userType = this.activatedRoute.snapshot.params['perfil'];
     this.userId = this.activatedRoute.snapshot.params['user_id'];
     let token = this.sessionService.getAccessToken();
-    let response = await this.alunoService
-      .getMentoriasFromAlunosById(this.userId, token)
-      .toPromise();
-    console.log('teste', response);
-    this.elementData = response.body.map((aluno) => {
-      return {
-        name: aluno.nome,
-        skill: aluno.talentos.map((talento) => talento.nome).join(', '),
-      };
-    });
+    if (this.userType === 'aluno') {
+      let response = await this.alunoService
+        .getMentoriasFromAlunosById(this.userId, token)
+        .toPromise();
+      this.displayedColumns = ['professor', 'mentoria'];
+      this.elementData = response.body.map((mentoria: MentoriaData) => {
+        return {
+          id: mentoria.id,
+          mentoria: mentoria.mentoria,
+          professor: mentoria.professor,
+          sessoes: mentoria.sessoes,
+          descricao: mentoria.descricao,
+          dataInicio: mentoria.dataInicio,
+          dataFim: mentoria.dataFim,
+        };
+      });
+    } else {
+      let response = await this.professorService.getMentoriasFromProfessorById(this.userId, token).toPromise();
+      this.displayedColumns = ['aluno', 'mentoria'];
+      this.elementData = response.body.map((mentoria: MentoriaData) => {
+        return {
+          id: mentoria.id,
+          mentoria: mentoria.mentoria,
+          aluno: mentoria.aluno,
+          sessoes: mentoria.sessoes,
+        };
+      });
+      
+    }
     this.dataSource = new MatTableDataSource(this.elementData);
   }
 
-  onFirstAction(row: any) {
-    console.log(row);
-    const dialogRef = this.dialog.open(ModalComponent, {
+  onFirstAction(mentoria: any[]) {
+    this.dialog.open(MentoriaStudentDetailsComponent, {
       width: '800px',
-      viewContainerRef: this.viewContainerRef,
-      data: {
-        content: this.alunoContent,
-        enableActions: false,
-        title: 'Monitoria de Python para Dados',
-      },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('fecho aluno');
+      data: { mentoria: mentoria }
     });
   }
 
-  onSecondAction(row: any) {
-    const dialogRef = this.dialog.open(ModalComponent, {
+  onSecondAction(mentoria: any[]) {
+    this.openDialog = this.dialog.open(MentoriaProfessorDetailsComponent, {
       width: '800px',
-      viewContainerRef: this.viewContainerRef,
-      data: {
-        content: this.professorContent,
-        enableActions: true,
-        title: 'Adicionar Feedback',
-      },
+      data: { mentoria: mentoria }
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        const sessao = this.sessoes.find(
-          (s) => s.value === this.feedbackForm.get('sessao').value
-        );
-        if (sessao) {
-          sessao.sessaoFeedback = this.feedbackForm.get('feedback').value;
+    this.openDialog.afterClosed().subscribe((result: FeedbackProfessorModalData) => {
+      
+      const updatedMentoria = this.elementData.find(m => m.id === result.mentoria.id);
+      if (updatedMentoria) {
+        const sessaoToUpdate = updatedMentoria.sessoes.find(s => s.sessaoId === result.feedbackNovo.id);
+        if (sessaoToUpdate) {
+          sessaoToUpdate.feedback = result.feedbackNovo.feedback;
         }
-      } else {
-        this.resetForm();
       }
-      console.log('fecho professor');
+      this.openDialog = null;
     });
-  }
-
-  setSessao(sessao: SessaoForm) {
-    this.originalFeedback = sessao.sessaoFeedback;
-    this.feedbackForm.patchValue({
-      sessao: sessao.value,
-      feedback: sessao.sessaoFeedback,
-    });
-    console.log('sessao: ', sessao);
-  }
-
-  resetForm() {
-    this.feedbackForm.patchValue({
-      feedback: this.originalFeedback,
-    });
-  }
-
-  saveFeedback() {
-    this.dialog.closeAll();
-  }
-
-  cancelFeedback() {
-    this.dialog.closeAll();
   }
 }

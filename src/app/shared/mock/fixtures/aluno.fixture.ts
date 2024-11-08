@@ -22,20 +22,33 @@ export function getMentoriasFromAlunoById(alunoId: number): {
   const professores = [...PROFESSORES];
 
   const alunoSessoes = sessoes.filter((sessao) => sessao.aluno_id === alunoId);
-  const alunoMentorias = alunoSessoes.map((sessao) =>
-    mentorias.find((mentoria) => mentoria.id === sessao.mentoria_id)
-  );
-  const result = alunoMentorias.map((mentoria) => {
-    const professor = professores.find(
-      (prof) => prof.id === mentoria?.professor_id
-    );
-    return {
-      mentoria: mentoria?.titulo,
-      professor: professor?.nome,
-    };
-  });
+  const alunoMentorias = alunoSessoes.reduce((acc, sessao) => {
+    const mentoria = mentorias.find((mentoria) => mentoria.id === sessao.mentoria_id);
+    if (mentoria) {
+      if (!acc[mentoria.id]) {
+        const professor = professores.find((prof) => prof.id === mentoria.professor_id);
+        acc[mentoria.id] = {
+          mentoria: mentoria.titulo,
+          id: mentoria.id,
+          professor: professor?.nome,
+          dataInicio: mentoria.data_inicio,
+          dataFim: mentoria.data_fim,
+          descricao: mentoria.descricao,
+          sessoes: [],
+          
+        };
+      }
+      acc[mentoria.id].sessoes.push({
+        sessaoId: sessao.id,
+        feedback: sessao.feedback,
+        data: sessao.data
+      });
+    }
+    return acc;
+  }, {});
 
-  console.log('[RESULT]', result);
+  console.log(alunoMentorias);
+  const result = Object.values(alunoMentorias);
 
   return {
     status: 200,

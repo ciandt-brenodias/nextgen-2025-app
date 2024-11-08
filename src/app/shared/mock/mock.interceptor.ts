@@ -128,7 +128,7 @@ import {
 } from './fixtures/aluno.fixture';
 import { getEmpresaByCnpj, getEmpresas } from './fixtures/empresa.fixture';
 import { getMentoriaById, getMentorias } from './fixtures/mentoria.fixture';
-import { getProfessorByID, getProfessores } from './fixtures/professor.fixture';
+import { getAlunosFromMentoriaByProfessorId, getProfessorByID, getProfessores } from './fixtures/professor.fixture';
 import { getSessaoById, getSessoes } from './fixtures/sessoes.fixture';
 import { signin } from './fixtures/signin.fixture';
 
@@ -172,6 +172,8 @@ function handleGetRequest(url: string): any {
     [Routes.ALUNO_BY_ID(':id')]: (id: string) => getAlunoById(parseInt(id)),
     [Routes.PROFESSOR_BY_ID(':id')]: (id: string) =>
       getProfessorByID(parseInt(id)),
+    [Routes.MENTORIAS_FROM_PROFESSOR_BY_ID(':id')]: (id: string) =>
+      getAlunosFromMentoriaByProfessorId(parseInt(id)),
     [Routes.EMPRESA_BY_CNPJ(':id')]: (id: string) => getEmpresaByCnpj(id),
     [Routes.MENTORIA_BY_ID(':id')]: (id: string) => getMentoriaById(id),
     [Routes.SESSOES_BY_ID(':id')]: (id: string) => getSessaoById(id),
