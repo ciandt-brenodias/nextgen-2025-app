@@ -53,11 +53,11 @@ export class MentoriaStudentDetailsComponent implements OnInit {
       return null;
     }
 
-    const oldestSession = mentoria.sessoes.reduce((oldest, session) => {
-      return new Date(session.data) < new Date(oldest.data) ? session : oldest;
+    const mostRecentSession = mentoria.sessoes.reduce((prev, curr) => {
+      return new Date(prev.data) > new Date(curr.data) ? prev : curr;
     });
 
-    const nextSessionDate = new Date(oldestSession.data);
+    const nextSessionDate = new Date(mostRecentSession.data);
     nextSessionDate.setDate(nextSessionDate.getDate() + 7);
     const formattedDate = nextSessionDate.toLocaleDateString('pt-BR', {
       day: '2-digit',
