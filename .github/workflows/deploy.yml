@@ -1,13 +1,14 @@
-name: NextGen 2025 APP
+name: Deploy Angular App to GitHub Pages
 
 on:
   push:
     branches:
-      - main # Change to main if your default branch is main
+      - main # Change to your default branch if different
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -15,18 +16,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "20" # You can specify the version you like
+          node-version: "20" # Specify the Node.js version
 
       - name: Install dependencies
         run: npm install
 
       - name: Build the app
-        run: npm run build
+        run: npm run build -- --output-path=dist/nextgen-2025-app --base-href=/nextgen-2025-app/
 
       - name: Deploy to GitHub Pages
-        run: |
-          npx angular-cli-ghpages --dir=dist/nextgen-2025-app
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/nextgen-2025-app
-          project: "nextgen-2025-app"
