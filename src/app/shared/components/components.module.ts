@@ -13,9 +13,12 @@ import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ModalComponent } from './modal/modal.component';
-import { MentoriaDetailsComponent } from './mentoria-details/mentoria-details.component';
+import { MentoriaStudentDetailsComponent } from './mentoria-student-details/mentoria-student-details.component';
+import { MentoriaProfessorDetailsComponent } from './mentoria-professor-details/mentoria-professor-details.component';
+import { MatSelectModule } from '@angular/material/select';
+import { CoreModule } from '@core/core.module';
 
-const COMPONENTS = [HeaderComponent, FooterCompoonent, TableComponent, SpinnerComponent, ModalComponent, MentoriaDetailsComponent];
+const COMPONENTS = [HeaderComponent, FooterCompoonent, TableComponent, SpinnerComponent, ModalComponent, MentoriaStudentDetailsComponent, MentoriaProfessorDetailsComponent];
 
 @NgModule({
   declarations: [...COMPONENTS],
@@ -26,9 +29,11 @@ const COMPONENTS = [HeaderComponent, FooterCompoonent, TableComponent, SpinnerCo
     MatInputModule,
     MatPaginatorModule,
     MatIconModule,
+    MatSelectModule, 
     MatSortModule,
     MatTableModule,
     MatExpansionModule,
+    CoreModule,
   ],
   exports: [...COMPONENTS],
 })

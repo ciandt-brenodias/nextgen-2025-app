@@ -1,31 +1,41 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Routes } from '@app/shared/helpers/routes.helper';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlunoService {
-    private apiUrl = 'http://localhost:3000/aluno';
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) {}
+  getAlunos(authToken: string): Observable<any> {
+    const headers = new HttpHeaders({
+      accept: '*/*',
+      'nextgen-auth-token': authToken,
+    });
 
-    getAlunos(authToken: string): Observable<any> {
-        const headers = new HttpHeaders({
-            'accept': '*/*',
-            'nextgen-auth-token': authToken
-        });
+    return this.http.get<any>(Routes.ALUNOS, { headers });
+  }
 
-        return this.http.get<any>(this.apiUrl, { headers });
-    }
+  getMentoriasFromAlunosById(id: string, authToken: string): Observable<any> {
+    const headers = new HttpHeaders({
+      accept: '*/*',
+      'nextgen-auth-token': authToken,
+    });
 
-    getAlunoById(id: string, authToken: string): Observable<any> {
-        const headers = new HttpHeaders({
-            'accept': '*/*',
-            'nextgen-auth-token': authToken
-        });
+    return this.http.get<any>(Routes.MENTORIAS_FROM_ALUNO_BY_ID(id), {
+      headers,
+    });
+  }
 
-        const url = `${this.apiUrl}/${id}`;
-        return this.http.get<any>(url, { headers });
-    }
+  getAlunoById(id: string, authToken: string): Observable<any> {
+    const headers = new HttpHeaders({
+      accept: '*/*',
+      'nextgen-auth-token': authToken,
+    });
+
+    const url = `${Routes.ALUNOS}/${id}`;
+    return this.http.get<any>(url, { headers });
+  }
 }

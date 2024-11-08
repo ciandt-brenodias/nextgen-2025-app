@@ -1,0 +1,37 @@
+<div class="m-8 flex flex-col justify-between gap-8">
+  <div class="flex flex-row justify-between">
+    <p class="text-lg font-medium mb-2">Mentoria de {{title}}</p>
+    <button (click)="close()"><mat-icon>close</mat-icon></button>
+  </div>
+  <div>
+    <form [formGroup]="feedbackForm">
+      <div class="flex flex-row gap-4 items-center">
+        <p class="h-fit mb-4">Sessao:</p>
+        <mat-form-field class="w-full lg:w-2/5">
+          <mat-select formControlName="sessao">
+            <mat-option [value]="null" (click)="setSessao(null)">
+              nenhuma
+            </mat-option>
+            <mat-option *ngFor="let sessao of sessoes" [value]="sessao.data" (click)="setSessao(sessao)">
+              {{sessao.data}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <p>Feedback:</p>
+        <mat-form-field class="w-full">
+          <textarea matInput formControlName="feedback" class="max-h-64"></textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="flex flex-row lg:gap-20 gap-4 justify-center">
+    <button class="flex custom-icon-button" (click)="saveFeedback()"><mat-icon class="text-lg">save</mat-icon>
+      <p class="mt-1">Salvar</p>
+    </button>
+    <button class="flex custom-icon-button" (click)="cancelFeedback()"><mat-icon class="text-lg">cancel</mat-icon>
+      <p class="mt-1">Cancelar</p>
+    </button>
+  </div>
+</div>
