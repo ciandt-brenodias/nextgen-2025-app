@@ -1,24 +1,16 @@
-import {
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { MentoriaProfessorDetailsComponent } from '@app/shared/components/mentoria-professor-details/mentoria-professor-details.component';
-import { MentoriaStudentDetailsComponent } from '@app/shared/components/mentoria-student-details/mentoria-student-details.component';
-import { ModalComponent } from '@app/shared/components/modal/modal.component';
-import { TokenHelper } from '@app/shared/helpers/token.helper';
-import { FeedbackProfessorModalData, MentoriaData } from '@core/interfaces/models';
+import {
+  FeedbackProfessorModalData,
+  MentoriaData,
+} from '@core/interfaces/models';
 import { AlunoService } from '@core/services/aluno.service';
-import { AuthService } from '@core/services/auth.service';
 import { ProfessorService } from '@core/services/professor.service';
 import { SessionService } from '@core/services/session.service';
-
+import { MentoriaProfessorDetailsComponent } from '../../shared/components/mentoria-professor-details/mentoria-professor-details.component';
+import { MentoriaStudentDetailsComponent } from '../../shared/components/mentoria-student-details/mentoria-student-details.component';
 
 @Component({
   selector: 'app-mentorias',
@@ -64,7 +56,9 @@ export class MentoriasComponent implements OnInit {
         };
       });
     } else {
-      let response = await this.professorService.getMentoriasFromProfessorById(this.userId, token).toPromise();
+      let response = await this.professorService
+        .getMentoriasFromProfessorById(this.userId, token)
+        .toPromise();
       this.displayedColumns = ['aluno', 'mentoria'];
       this.elementData = response.body.map((mentoria: MentoriaData) => {
         return {
@@ -74,7 +68,6 @@ export class MentoriasComponent implements OnInit {
           sessoes: mentoria.sessoes,
         };
       });
-      
     }
     this.dataSource = new MatTableDataSource(this.elementData);
   }
@@ -82,26 +75,31 @@ export class MentoriasComponent implements OnInit {
   onFirstAction(mentoria: any[]) {
     this.dialog.open(MentoriaStudentDetailsComponent, {
       width: '800px',
-      data: { mentoria: mentoria }
+      data: { mentoria: mentoria },
     });
   }
 
   onSecondAction(mentoria: any[]) {
     this.openDialog = this.dialog.open(MentoriaProfessorDetailsComponent, {
       width: '800px',
-      data: { mentoria: mentoria }
+      data: { mentoria: mentoria },
     });
 
-    this.openDialog.afterClosed().subscribe((result: FeedbackProfessorModalData) => {
-      
-      const updatedMentoria = this.elementData.find(m => m.id === result.mentoria.id);
-      if (updatedMentoria) {
-        const sessaoToUpdate = updatedMentoria.sessoes.find(s => s.sessaoId === result.feedbackNovo.id);
-        if (sessaoToUpdate) {
-          sessaoToUpdate.feedback = result.feedbackNovo.feedback;
+    this.openDialog
+      .afterClosed()
+      .subscribe((result: FeedbackProfessorModalData) => {
+        const updatedMentoria = this.elementData.find(
+          (m) => m.id === result.mentoria.id
+        );
+        if (updatedMentoria) {
+          const sessaoToUpdate = updatedMentoria.sessoes.find(
+            (s) => s.sessaoId === result.feedbackNovo.id
+          );
+          if (sessaoToUpdate) {
+            sessaoToUpdate.feedback = result.feedbackNovo.feedback;
+          }
         }
-      }
-      this.openDialog = null;
-    });
+        this.openDialog = null;
+      });
   }
 }

@@ -1,7 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.custom-header-button {
-  @apply flex justify-center py-2 px-4 border border-transparent border-coral-300 text-sm lg:text-base font-medium rounded-md text-coral-500 bg-coral-100 hover:bg-coral-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
-}

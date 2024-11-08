@@ -1,12 +1,15 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FeedbackProfessorModalData, MentoriaData, SessaoData } from '@core/interfaces/models';
+import {
+  FeedbackProfessorModalData,
+  MentoriaData,
+  SessaoData,
+} from '@core/interfaces/models';
 
 @Component({
   selector: 'app-mentoria-professor-details',
   templateUrl: './mentoria-professor-details.component.html',
-  styleUrls: ['./mentoria-professor-details.component.scss']
 })
 export class MentoriaProfessorDetailsComponent implements OnInit, OnDestroy {
   feedbackForm: FormGroup;
@@ -19,7 +22,7 @@ export class MentoriaProfessorDetailsComponent implements OnInit, OnDestroy {
     private dialogRef: MatDialogRef<MentoriaProfessorDetailsComponent>
   ) {
     this.mentoria = data.mentoria;
-    this.title = this.mentoria.mentoria
+    this.title = this.mentoria.mentoria;
     this.sessoes = this.mentoria.sessoes;
     this.feedbackForm = new FormGroup({
       sessao: new FormControl(null, Validators.required),
@@ -50,7 +53,10 @@ export class MentoriaProfessorDetailsComponent implements OnInit, OnDestroy {
     if (this.feedbackForm.invalid) {
       return;
     }
-    this.dialogRef.close({mentoria: this.mentoria, feedbackNovo: this.feedbackForm.value} as FeedbackProfessorModalData);
+    this.dialogRef.close({
+      mentoria: this.mentoria,
+      feedbackNovo: this.feedbackForm.value,
+    } as FeedbackProfessorModalData);
   }
 
   cancelFeedback() {
@@ -59,7 +65,7 @@ export class MentoriaProfessorDetailsComponent implements OnInit, OnDestroy {
     }
     this.dialogRef.close(false);
   }
-  
+
   close(): void {
     if (this.feedbackForm.dirty) {
       this.feedbackForm.reset();

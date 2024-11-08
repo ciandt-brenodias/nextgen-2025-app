@@ -1,6 +1,6 @@
 <div class="flex flex-col w-full h-full">
   <div *ngIf="enableFilter" class="mb-4">
-    <p class="text-lg font-medium mb-2" >Filtro</p>
+    <p class="text-lg font-medium mb-2">Filtro</p>
     <mat-form-field class=" w-full lg:w-3/5">
       <input matInput (keyup)="applyFilter($event)" placeholder="nome, skill, etc.." #input>
     </mat-form-field>
@@ -16,14 +16,21 @@
       <ng-container *ngIf="(enableAction1 || enableAction2)" matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="p-4 w-1/6"> actions </th>
         <td class=" p-4 w-1/12 gap-4" mat-cell *matCellDef="let row">
-            <button *ngIf="enableAction1" class="custom-icon-button" (click)="onFirstAction(row)"><mat-icon>visibility</mat-icon></button>
-            <button *ngIf="enableAction2" class="custom-icon-button" (click)="onSecondAction(row)"><mat-icon>add</mat-icon></button>
+          <button *ngIf="enableAction1"
+            class="lg:mr-2 my-1 text-sm text-purple-200 lg:p-2 rounded hover:transform hover:scale-125 transition"
+            (click)="onFirstAction(row)"><mat-icon>visibility</mat-icon></button>
+          <button *ngIf="enableAction2"
+            class="lg:mr-2 my-1 text-sm text-purple-200 lg:p-2 rounded hover:transform hover:scale-125 transition"
+            (click)="onSecondAction(row)"><mat-icon>add</mat-icon></button>
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns.concat((enableAction1 || enableAction2) ? ['actions'] : [])"></tr>
+      <tr mat-header-row
+        *matHeaderRowDef="displayedColumns.concat((enableAction1 || enableAction2) ? ['actions'] : [])"></tr>
 
-      <tr mat-row *matRowDef="let row; columns: displayedColumns.concat((enableAction1 || enableAction2) ? ['actions'] : [])"></tr>
+      <tr mat-row
+        *matRowDef="let row; columns: displayedColumns.concat((enableAction1 || enableAction2) ? ['actions'] : [])">
+      </tr>
 
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell p-8" [attr.colspan]="displayedColumns.length + ((enableAction1 || enableAction2) ? 1 : 0)">
