@@ -12,13 +12,12 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { MatIconModule } from '@angular/material/icon';
-import { ModalComponent } from './modal/modal.component';
 import { MentoriaStudentDetailsComponent } from './mentoria-student-details/mentoria-student-details.component';
 import { MentoriaProfessorDetailsComponent } from './mentoria-professor-details/mentoria-professor-details.component';
 import { MatSelectModule } from '@angular/material/select';
 import { CoreModule } from '@core/core.module';
 
-const COMPONENTS = [HeaderComponent, FooterCompoonent, TableComponent, SpinnerComponent, ModalComponent, MentoriaStudentDetailsComponent, MentoriaProfessorDetailsComponent];
+const COMPONENTS = [HeaderComponent, FooterCompoonent, TableComponent, SpinnerComponent, MentoriaStudentDetailsComponent, MentoriaProfessorDetailsComponent];
 
 @NgModule({
   declarations: [...COMPONENTS],
@@ -30,6 +29,7 @@ const COMPONENTS = [HeaderComponent, FooterCompoonent, TableComponent, SpinnerCo
     MatPaginatorModule,
     MatIconModule,
     MatSelectModule, 
+    MatPaginatorModule,
     MatSortModule,
     MatTableModule,
     MatExpansionModule,

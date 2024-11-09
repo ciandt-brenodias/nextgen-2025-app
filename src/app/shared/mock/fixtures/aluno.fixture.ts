@@ -47,7 +47,6 @@ export function getMentoriasFromAlunoById(alunoId: number): {
     return acc;
   }, {});
 
-  console.log(alunoMentorias);
   const result = Object.values(alunoMentorias);
 
   return {

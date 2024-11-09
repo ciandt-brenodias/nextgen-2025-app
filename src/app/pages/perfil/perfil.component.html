@@ -1,69 +1,74 @@
-<div class="flex flex-col w-full mb-32 px-8 mt-4 lg:px-32 lg:mt-8 items-center ">
-  <p class="text-2xl font-medium self-start">Perfil</p>
-  <img src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" width="400"
-    alt="Profile Image" class="mb-4 rounded-full w-80 h-80">
-
-  <div class="text-center mb-6">
-    <h1 class="text-lg font-bold">Name</h1>
-    <p class="text-sm">Pronouns</p>
-    <p class="text-sm">Age</p>
+<section class="flex w-full flex-col h-fit justify-center items-center">
+  <div *ngIf="dataSourceMentorias?.data?.length == 0 || dataSourceSkills?.data?.length == 0"
+    class="flex justify-center items-center">
+    <app-spinner></app-spinner>
   </div>
+  <div *ngIf="dataSourceMentorias?.data?.length != 0 && dataSourceSkills?.data?.length != 0"
+    class="flex flex-col w-full mb-32 px-8 mt-4 lg:px-32 lg:mt-8 items-center ">
+    <p class="text-2xl font-medium self-start">Perfil</p>
+    <img src="https://xsgames.co/randomusers/avatar.php?g=pixel" loading="lazy" width="400" alt="Profile Image"
+      class="mb-4 rounded-full w-80 h-80">
 
-  <mat-tab-group class="w-full !max-w-4xl border-solid border-2 border-gray-400 p-2 rounded-lg bg-white">
-    <mat-tab label="Perfil">
-      <div class="p-4">
-        <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4 mb-2">
-          <div class="flex flex-col gap-1">
-            <div class="flex flex-row gap-2">
-              <p class="font-semibold">Nome completo:</p>
-              <p>{{profileInfo.fullName}}</p>
+    <div class="text-center mb-6">
+      <h1 class="text-lg font-bold">{{perfilData?.nome.split(" ")[0]}}</h1>
+      <p class="text-sm">{{perfilData?.pronomes}}</p>
+      <p class="text-sm">{{perfilData?.idade}}</p>
+    </div>
+
+    <mat-tab-group class="w-full !max-w-4xl border-solid border-2 border-gray-400 p-2 rounded-lg bg-white">
+      <mat-tab label="Perfil">
+        <div class="p-4">
+          <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-4 mb-2">
+            <div class="flex flex-col gap-1">
+              <div class="flex flex-row gap-2">
+                <p class="font-semibold">Nome completo:</p>
+                <p>{{perfilData?.nome}}</p>
+              </div>
+              <div class="flex flex-row gap-2">
+                <p class="font-semibold">CPF:</p>
+                <p>{{perfilData?.cpf}}</p>
+              </div>
+              <div class="flex flex-row gap-2">
+                <p class="font-semibold">Email:</p>
+                <p>{{perfilData?.email}}</p>
+              </div>
+              <div class="flex flex-row gap-2">
+                <p class="font-semibold">LinkedIn:</p>
+                <p>{{perfilData?.linkedin}}</p>
+              </div>
+              <div class="flex flex-row gap-2">
+                <p class="font-semibold">Endereço:</p>
+                <p>{{getEnderecoSmall(perfilData?.endereco)}}</p>
+              </div>
             </div>
-            <div class="flex flex-row gap-2">
-              <p class="font-semibold">Email:</p>
-              <p>{{profileInfo.email}}</p>
-            </div>
-            <div class="flex flex-row gap-2">
-              <p class="font-semibold">LinkedIn:</p>
-              <p>{{profileInfo.linkedin}}</p>
-            </div>
-            <div class="flex flex-row gap-2">
-              <p class="font-semibold">Endereço:</p>
-              <p>{{profileInfo.address}}</p>
+            <div class="flex flex-col gap-1">
+              <div class="flex flex-row gap-2">
+                <p class="font-semibold">Cidade:</p>
+                <p>{{getCidade(perfilData?.endereco)}}</p>
+              </div>
+              <div class="flex flex-row gap-2">
+                <p class="font-semibold">País:</p>
+                <p>Brasil</p>
+              </div>
+              <div class="flex flex-row gap-2">
+                <p class="font-semibold">CEP/ZIP Code:</p>
+                <p>{{getCep(perfilData?.endereco)}}</p>
+              </div>
+              <div class="flex flex-row gap-2">
+                <p class="font-semibold">Estado:</p>
+                <p>{{perfilData?.endereco.split("/")[1]}}</p>
+              </div>
             </div>
           </div>
-          <div class="flex flex-col gap-1">
-            <div class="flex flex-row gap-2">
-              <p class="font-semibold">Cidade:</p>
-              <p>{{profileInfo.city}}</p>
-            </div>
-            <div class="flex flex-row gap-2">
-              <p class="font-semibold">País:</p>
-              <p>{{profileInfo.country}}</p>
-            </div>
-            <div class="flex flex-row gap-2">
-              <p class="font-semibold">CEP/ZIP Code:</p>
-              <p>{{profileInfo.zipCode}}</p>
-            </div>
-            <div class="flex flex-row gap-2">
-              <p class="font-semibold">Estado:</p>
-              <p>{{profileInfo.state}}</p>
-            </div>
-          </div>
+          <app-table [dataSource]="dataSourceSkills" [displayedColumns]="displayedColumnsSkills" [enableFilter]="false"
+            [enableAction1]="false" [enableAction2]="false" />
         </div>
-        <app-table [dataSource]="dataSourceSkills"
-          [displayedColumns]="displayedColumnsSkills" [enableFilter]="false" [enableAction1]="false"
-          [enableAction2]="false" />
-      </div>
-    </mat-tab>
+      </mat-tab>
 
-    <mat-tab label="Mentorias">
-        <app-table [dataSource]="dataSourceMentorias"
-          [displayedColumns]="displayedColumnsMentorias" [enableFilter]="false" [enableAction1]="true"
-          [enableAction2]="false" (firstAction)="onFirstAction($event)" />
-    </mat-tab>
-  </mat-tab-group>
-</div>
-
-<ng-template #alunoSessions>
-  <app-mentoria-student-details></app-mentoria-student-details>
-</ng-template>
+      <mat-tab label="Mentorias">
+        <app-table [dataSource]="dataSourceMentorias" [displayedColumns]="displayedColumnsMentorias"
+          [enableFilter]="false" [enableAction1]="true" [enableAction2]="false" (firstAction)="onFirstAction($event)" />
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</section>

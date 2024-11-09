@@ -1,21 +1,14 @@
 import {
   Component,
   OnInit,
-  TemplateRef,
-  ViewChild,
-  ViewContainerRef,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { MentoriaProfessorDetailsComponent } from '@app/shared/components/mentoria-professor-details/mentoria-professor-details.component';
 import { MentoriaStudentDetailsComponent } from '@app/shared/components/mentoria-student-details/mentoria-student-details.component';
-import { ModalComponent } from '@app/shared/components/modal/modal.component';
-import { TokenHelper } from '@app/shared/helpers/token.helper';
 import { FeedbackProfessorModalData, MentoriaData } from '@core/interfaces/models';
 import { AlunoService } from '@core/services/aluno.service';
-import { AuthService } from '@core/services/auth.service';
 import { ProfessorService } from '@core/services/professor.service';
 import { SessionService } from '@core/services/session.service';
 

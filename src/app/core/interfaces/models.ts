@@ -28,3 +28,37 @@ export interface UserToken {
   perfil: string,
   email: string,
 }
+
+export interface AvaliacaoData {
+  skill: string;
+  avaliacao: string;
+}
+
+export interface MentoriasPerfilData {
+  id: string;
+  mentoria: string;
+  professor?: string;
+  aluno?: string;
+  sessoes: SessaoData[];
+  dataInicio?: string;
+  dataFim?: string;
+  descricao?: string;
+  skill: string,
+  nivel: string,
+  "n de sessoes": string,
+}
+
+export interface AlunoData {
+  id: number;
+  nome: string;
+  cpf: string;
+  talentos: {
+    nome: string;
+    avaliacao: number;
+  }[];
+  idade: number;
+  email: string;
+  linkedin: string;
+  pronomes: string;
+  endereco: string;
+}

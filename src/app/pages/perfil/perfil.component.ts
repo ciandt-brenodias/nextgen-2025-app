@@ -1,12 +1,12 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { ModalComponent } from '@app/shared/components/modal/modal.component';
+import { MentoriaStudentDetailsComponent } from '@app/shared/components/mentoria-student-details/mentoria-student-details.component';
+import { AlunoData, AvaliacaoData, MentoriaData, MentoriasPerfilData } from '@core/interfaces/models';
+import { AlunoService } from '@core/services/aluno.service';
+import { SessionService } from '@core/services/session.service';
 
-interface AvaliacaoData {
-  skill: string;
-  avaliacao: string;
-}
+
 
 @Component({
   selector: 'app-perfil',
@@ -14,57 +14,60 @@ interface AvaliacaoData {
   styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent implements OnInit {
-  @ViewChild('alunoSessions') alunoSessions: TemplateRef<any>;
   
-  elementData: AvaliacaoData[] = [];
+  elementDataAvaliacao: AvaliacaoData[] = [];
+  elementDataMentoriasPerfil: MentoriasPerfilData[] = [];
+  perfilData: AlunoData;
   userLogger: 'professor' | 'aluno' = 'aluno';
-  dataSourceMentorias: MatTableDataSource<AvaliacaoData>;
-  displayedColumnsMentorias: string[] = ['skill', 'avaliacao'];
-  dataSourceSkills: MatTableDataSource<AvaliacaoData>;
+  dataSourceMentorias: MatTableDataSource<MentoriasPerfilData> = new MatTableDataSource(this.elementDataMentoriasPerfil);
+  displayedColumnsMentorias: string[] = ['professor', 'skill', 'nivel', "n de sessoes"];
+  dataSourceSkills: MatTableDataSource<AvaliacaoData> = new MatTableDataSource(this.elementDataAvaliacao);
   displayedColumnsSkills: string[] = ['skill', 'avaliacao'];
-  
-  profileInfo = {
-    fullName: 'Daniel',
-    email: 'example@example.com',
-    linkedin: 'linkedin.com/in/example',
-    address: '123 Main St',
-    city: 'City Name',
-    country: 'Country Name',
-    zipCode: '12345',
-    state: 'State Name'
-  };
 
+  constructor(private dialog: MatDialog, private alunoService: AlunoService, private sessionService: SessionService) { }
 
-  constructor(public dialog: MatDialog,private viewContainerRef: ViewContainerRef) { }
+  async ngOnInit() {
+    let token = this.sessionService.getAccessToken();
+    this.perfilData = (await this.alunoService.getAlunoById('1', token).toPromise()).body;
+    this.elementDataAvaliacao = this.perfilData.talentos.map((talento) => {
+      return {
+        skill: talento.nome,
+        avaliacao: talento.avaliacao.toString()
+      };
+    });
 
-  ngOnInit() {
-    this.elementData = [
-      { skill: 'Skill 1', avaliacao: 'Avaliacao 1' },
-      { skill: 'Skill 2', avaliacao: 'Avaliacao 2' },
-      { skill: 'Skill 3', avaliacao: 'Avaliacao 3' },
-      { skill: 'Skill 1', avaliacao: 'Avaliacao 1' },
-      { skill: 'Skill 2', avaliacao: 'Avaliacao 2' },
-      { skill: 'Skill 3', avaliacao: 'Avaliacao 3' },
-      { skill: 'Skill 1', avaliacao: 'Avaliacao 1' },
-      { skill: 'Skill 2', avaliacao: 'Avaliacao 2' },
-      { skill: 'Skill 3', avaliacao: 'Avaliacao 3' },
-    ];
-    this.dataSourceMentorias = new MatTableDataSource(this.elementData);
-    this.dataSourceSkills = new MatTableDataSource(this.elementData);
+    let mentoriaData: MentoriaData[] = (await this.alunoService.getMentoriasFromAlunosById('1', token).toPromise()).body;
+    this.elementDataMentoriasPerfil = mentoriaData.map((mentoria) => {
+      return {
+        ...mentoria,
+        skill: mentoria.mentoria,
+        nivel: this.elementDataAvaliacao.find((avaliacao) => avaliacao.skill === mentoria.mentoria).avaliacao,
+        "n de sessoes": mentoria.sessoes.length.toString()
+      };
+    });
+
+    this.dataSourceMentorias = new MatTableDataSource(this.elementDataMentoriasPerfil);
+    this.dataSourceSkills = new MatTableDataSource(this.elementDataAvaliacao);
   }
 
-  onFirstAction(row: any) {
-    console.log(row);
-    const dialogRef = this.dialog.open(ModalComponent, {
+  onFirstAction(mentoria: any) {
+    this.dialog.open(MentoriaStudentDetailsComponent, {
       width: '800px',
-      viewContainerRef: this.viewContainerRef,
-      data: { content: this.alunoSessions, enableActions: false, title: 'Monitoria de Python para Dados' }
+      data: { mentoria: mentoria }
     });
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('fecho aluno');
-    });
+  getCep(endereco: string) {
+    return endereco.replace(/\D/g, '');
+  }
 
+  getEnderecoSmall(endereco: string) {
+    return endereco.split(/[0-9]/)[0]
+  }
+
+  getCidade(endereco: string) {
+    let enderecoSeparado = endereco.split("/")[0].split(" ");
+    return enderecoSeparado[enderecoSeparado.length - 2];
   }
 
 }
