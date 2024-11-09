@@ -1,7 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.custom-icon-button {
-  @apply lg:mr-2 my-1 text-sm text-purple-200 lg:p-2 rounded hover:transform hover:scale-125 transition;
-}

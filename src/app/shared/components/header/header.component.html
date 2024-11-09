@@ -12,22 +12,27 @@
 
     <div hidden="true" [ngClass]="{'hidden': isMenuOpen, 'lg:flex': true }" class="flex-row space-x-4">
       <div *ngIf="isAluno || isProfessor" class="flex space-x-4">
-        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
+        <button type="button" (click)="teste()"
+          class="flex justify-center py-2 px-4 border border-transparent border-coral-300 text-sm lg:text-base font-medium rounded-md text-coral-500 bg-coral-100 hover:bg-coral-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-12 lg:w-32">
           home
         </button>
-        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
+        <button type="button" (click)="teste()"
+          class="flex justify-center py-2 px-4 border border-transparent border-coral-300 text-sm lg:text-base font-medium rounded-md text-coral-500 bg-coral-100 hover:bg-coral-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-12 lg:w-32">
           mentorias
         </button>
-        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
+        <button type="button" (click)="teste()"
+          class="flex justify-center py-2 px-4 border border-transparent border-coral-300 text-sm lg:text-base font-medium rounded-md text-coral-500 bg-coral-100 hover:bg-coral-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-12 lg:w-32">
           perfil
         </button>
       </div>
 
       <div *ngIf="isEmpresa" class="flex space-x-4">
-        <button type="button" (click)="teste()" class="custom-header-button w-12 lg:w-32">
+        <button type="button" (click)="teste()"
+          class="flex justify-center py-2 px-4 border border-transparent border-coral-300 text-sm lg:text-base font-medium rounded-md text-coral-500 bg-coral-100 hover:bg-coral-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-12 lg:w-32">
           home
         </button>
-        <button type="button" (click)="teste()" class="custom-header-button w-16 lg:w-48">
+        <button type="button" (click)="teste()"
+          class="flex justify-center py-2 px-4 border border-transparent border-coral-300 text-sm lg:text-base font-medium rounded-md text-coral-500 bg-coral-100 hover:bg-coral-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-16 lg:w-48">
           banco de talentos
         </button>
       </div>
@@ -36,22 +41,27 @@
 
   <div *ngIf="isMenuOpen" class="lg:hidden flex flex-col space-y-4 px-4 py-4">
     <div *ngIf="isAluno || isProfessor" class="flex flex-col gap-4">
-      <button type="button" (click)="teste()" class="custom-header-button w-full">
+      <button type="button" (click)="teste()"
+        class="flex justify-center py-2 px-4 border border-transparent border-coral-300 text-sm lg:text-base font-medium rounded-md text-coral-500 bg-coral-100 hover:bg-coral-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-full">
         home
       </button>
-      <button type="button" (click)="teste()" class="custom-header-button w-full">
+      <button type="button" (click)="teste()"
+        class="flex justify-center py-2 px-4 border border-transparent border-coral-300 text-sm lg:text-base font-medium rounded-md text-coral-500 bg-coral-100 hover:bg-coral-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-full">
         mentorias
       </button>
-      <button type="button" (click)="teste()" class="custom-header-button w-full">
+      <button type="button" (click)="teste()"
+        class="flex justify-center py-2 px-4 border border-transparent border-coral-300 text-sm lg:text-base font-medium rounded-md text-coral-500 bg-coral-100 hover:bg-coral-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-full">
         perfil
       </button>
     </div>
 
     <div *ngIf="isEmpresa" class="flex flex-col gap-4">
-      <button type="button" (click)="teste()" class="custom-header-button w-full">
+      <button type="button" (click)="teste()"
+        class="flex justify-center py-2 px-4 border border-transparent border-coral-300 text-sm lg:text-base font-medium rounded-md text-coral-500 bg-coral-100 hover:bg-coral-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-full">
         home
       </button>
-      <button type="button" (click)="teste()" class="custom-header-button w-full">
+      <button type="button" (click)="teste()"
+        class="flex justify-center py-2 px-4 border border-transparent border-coral-300 text-sm lg:text-base font-medium rounded-md text-coral-500 bg-coral-100 hover:bg-coral-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-full">
         banco de talentos
       </button>
     </div>

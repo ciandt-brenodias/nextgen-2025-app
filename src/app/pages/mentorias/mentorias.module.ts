@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CoreModule } from '@app/core/core.module';
-import { MentoriasComponent } from './mentorias.component';
-import { ComponentsModule } from '@app/shared/components/components.module';
-import { MentoriasRoutingModule } from './mentorias-routing.module';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { CoreModule } from '@app/core/core.module';
+import { ComponentsModule } from '@app/shared/components/components.module';
+import { MentoriasRoutingModule } from './mentorias-routing.module';
+import { MentoriasComponent } from './mentorias.component';
 
 @NgModule({
   declarations: [MentoriasComponent],
@@ -18,11 +18,11 @@ import { MatInputModule } from '@angular/material/input';
     MentoriasRoutingModule,
     ComponentsModule,
     MatProgressSpinnerModule,
-    MatFormFieldModule, 
-    MatSelectModule, 
+    MatFormFieldModule,
+    MatSelectModule,
     MatInputModule,
     FormsModule,
   ],
   exports: [MentoriasComponent],
 })
-export class MentoriasModule { }
+export class MentoriasModule {}

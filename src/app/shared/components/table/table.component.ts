@@ -1,5 +1,13 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, AfterViewInit } from '@angular/core';
-import { MatFormFieldAppearance } from '@angular/material/form-field';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,10 +15,8 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit, AfterViewInit {
-
   @Input() dataSource!: MatTableDataSource<any>;
   @Input() displayedColumns: string[] = [];
   @Input() enableFilter: boolean = true;
