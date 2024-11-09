@@ -22,12 +22,13 @@ jobs:
         run: npm install
 
       - name: Build the app
-        run: npm run build
+        run: npm run build --output-path=./dist --base-href=/nextgen-2025-app/
 
       - name: Deploy
         if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/nextgen-2025-app
+          publish_dir: ./dist
           publish_branch: gh-pages
+          enable_jekyll: false
