@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build the app
-        run: npm run build --output-path=./dist
+        run: npm run build --output-path=./dist --base-href=/nextgen-2025-app/
 
       - name: Deploy
         if: success()
@@ -31,4 +31,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-          enable_jekyll: false
+          enable_jekyll: false # Disable Jekyll if not needed
