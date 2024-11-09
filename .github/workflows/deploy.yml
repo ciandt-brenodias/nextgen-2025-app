@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build the app
-        run: npm run build -- --output-path=dist/nextgen-2025-app --base-href=/nextgen-2025-app/
+        run: npm run build
 
       - name: Deploy
         if: success()
